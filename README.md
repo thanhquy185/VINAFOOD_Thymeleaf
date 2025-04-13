@@ -1,4 +1,4 @@
-# 🍴 VINAFOOD - Website quản lý cửa hàng bán món ăn đơn giản
+# 🍴 VINAFOOD - Website quản lý cửa hàng bán món ăn
 
 ---
 
@@ -10,17 +10,32 @@
 
 ## 🖼️ Giao diện
 
-<p align="center">
-  <img src="src/main/resources/static/assets/images/readme/login.png" alt="Đăng nhập" width="100%" />
+<!-- <p align="center">
+  <img src="src/main/resources/static/assets/images/readme/login.png" alt="Giao diện đăng nhập" width="100%" />
   <br>
   <em>Hình 1: Giao diện đăng nhập</em>
 </p>
 
 <p align="center">
-  <img src="src/main/resources/static/assets/images/readme/register.png" alt="Giao diện đăng ký" width="600"/>
+  <img src="src/main/resources/static/assets/images/readme/register.png" alt="Giao diện đăng ký" width="100%"/>
   <br>
   <em>Hình 2: Giao diện đăng ký</em>
-</p>
+</p> -->
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="src/main/resources/static/assets/images/readme/login.png" alt="Giao diện đăng nhập" width="300"/>
+      <br>
+      <em>Hình 1: Giao diện đăng nhập</em>
+    </td>
+    <td align="center">
+      <img src="src/main/resources/static/assets/images/readme/register.png" alt="Giao diện đăng ký" width="300"/>
+      <br>
+      <em>Hình 2: Giao diện đăng ký</em>
+    </td>
+  </tr>
+</table>
 
 <p><br></p>
 
@@ -42,11 +57,17 @@
 
 <p><br></p>
 
-## ❌ Hạn chế
+## ❌ Điểm hạn chế
 
+- Giao diện đơn giản, không bắt mắt
+- Chưa xử lý việc khi người dùng quên mật khẩu
+- Chưa xử lý việc khi người dùng đăng nhập bằng các tài khoản: Facebook, Google
 - Chưa xử lý tốt nghiệp vụ bán hàng
 - Reload trang liên tục
 - Chưa tính hợp thanh toán bằng VNPAY
+- ...
+
+**_Ghi chú:_** _Vì là đồ án mục đích chính là dùng để học Java Spring nên còn vài tác vụ chưa xử lý tốt_
 
 <p><br></p>
 
