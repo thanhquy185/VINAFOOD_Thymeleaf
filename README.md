@@ -35,6 +35,54 @@
       <em>Hình 2: Giao diện đăng ký</em>
     </td>
   </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/client-products.png" alt="Giao diện danh sách món ăn" width="100%"/>
+      <br>
+      <em>Hình 3: Giao diện danh sách món ăn</em>
+    </td>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/client-detail-product.png" alt="Giao diện chi tiết món ăn (Còn hàng)" width="100%"/>
+      <br>
+      <em>Hình 4: Giao diện chi tiết món ăn (Còn hàng)</em>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/client-info.png" alt="Giao diện thông tin người dùng" width="100%"/>
+      <br>
+      <em>Hình 5: Giao diện thông tin người dùng</em>
+    </td>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/client-cart.png" alt="Giao diện thông tin mua hàng" width="100%"/>
+      <br>
+      <em>Hình 6: Giao diện thông tin mua hàng</em>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/client-payment.png" alt="Giao diện thanh toán" width="100%"/>
+      <br>
+      <em>Hình 7: Giao diện thanh toán</em>
+    </td>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/client-payment-change-address.png" alt="Giao diện thanh toán (thay đổi địa chỉ giao hàng)" width="100%"/>
+      <br>
+      <em>Hình 8: Giao diện thanh toán (thay đổi địa chỉ giao hàng)</em>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/client-detail-order.png" alt="Giao diện chi tiết đơn hàng" width="100%"/>
+      <br>
+      <em>Hình 9: Giao diện chi tiết đơn hàng</em>
+    </td>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/403.png" alt="Giao diện trang 403" width="100%"/>
+      <br>
+      <em>Hình 10: Giao diện trang 403</em>
+    </td>
+  </tr>
 </table>
 
 <p><br></p>
