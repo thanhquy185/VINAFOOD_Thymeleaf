@@ -11,13 +11,13 @@
 ## 🖼️ Giao diện
 
 <p align="center">
-  <img src="/assets/images/readme/login.png" alt="Đăng nhập" width="100%" />
+  <img src="src/main/resources/static/assets/images/readme/login.png" alt="Đăng nhập" width="100%" />
   <br>
   <em>Hình 1: Giao diện đăng nhập</em>
 </p>
 
 <p align="center">
-  <img src="/assets/images/readme/register.png" alt="Giao diện đăng ký" width="600"/>
+  <img src="src/main/resources/static/assets/images/readme/register.png" alt="Giao diện đăng ký" width="600"/>
   <br>
   <em>Hình 2: Giao diện đăng ký</em>
 </p>
