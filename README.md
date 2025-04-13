@@ -24,23 +24,23 @@
 
 <table>
   <tr>
-    <td align="center">
-      <img src="src/main/resources/static/assets/images/readme/login.png" alt="Giao diện đăng nhập" width="25%"/>
+    <td width="25%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/login.png" alt="Giao diện đăng nhập" width="100%"/>
       <br>
       <em>Hình 1: Giao diện đăng nhập</em>
     </td>
-    <td align="center">
-      <img src="src/main/resources/static/assets/images/readme/register.png" alt="Giao diện đăng ký" width="25%"/>
+    <td width="25%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/register.png" alt="Giao diện đăng ký" width="100%"/>
       <br>
       <em>Hình 2: Giao diện đăng ký</em>
     </td>
-    <td align="center">
-      <img src="src/main/resources/static/assets/images/readme/login.png" alt="Giao diện đăng nhập" width="25%"/>
+    <td width="25%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/login.png" alt="Giao diện đăng nhập" width="100%"/>
       <br>
       <em>Hình 1: Giao diện đăng nhập</em>
     </td>
-    <td align="center">
-      <img src="src/main/resources/static/assets/images/readme/register.png" alt="Giao diện đăng ký" width="25%"/>
+    <td width="25%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/register.png" alt="Giao diện đăng ký" width="100%"/>
       <br>
       <em>Hình 2: Giao diện đăng ký</em>
     </td>
