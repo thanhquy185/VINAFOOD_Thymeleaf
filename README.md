@@ -25,12 +25,22 @@
 <table>
   <tr>
     <td align="center">
-      <img src="src/main/resources/static/assets/images/readme/login.png" alt="Giao diện đăng nhập" width="300"/>
+      <img src="src/main/resources/static/assets/images/readme/login.png" alt="Giao diện đăng nhập" width="25%"/>
       <br>
       <em>Hình 1: Giao diện đăng nhập</em>
     </td>
     <td align="center">
-      <img src="src/main/resources/static/assets/images/readme/register.png" alt="Giao diện đăng ký" width="300"/>
+      <img src="src/main/resources/static/assets/images/readme/register.png" alt="Giao diện đăng ký" width="25%"/>
+      <br>
+      <em>Hình 2: Giao diện đăng ký</em>
+    </td>
+    <td align="center">
+      <img src="src/main/resources/static/assets/images/readme/login.png" alt="Giao diện đăng nhập" width="25%"/>
+      <br>
+      <em>Hình 1: Giao diện đăng nhập</em>
+    </td>
+    <td align="center">
+      <img src="src/main/resources/static/assets/images/readme/register.png" alt="Giao diện đăng ký" width="25%"/>
       <br>
       <em>Hình 2: Giao diện đăng ký</em>
     </td>
