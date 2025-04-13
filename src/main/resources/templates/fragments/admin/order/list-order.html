@@ -1,0 +1,222 @@
+<div class="main__content" th:fragment="content">
+  <div class="main__filter">
+    <div class="main__form-group form-group filter">
+      <label for="find-input" class="main__form-group-icon">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </label>
+      <input
+        type="text"
+        id="find-input"
+        class="main__form-group-input"
+        placeholder="ID đơn hàng"
+        autocomplete="off"
+      />
+    </div>
+    <div class="main__form-group form-group filter select">
+      <label for="sort-select" class="main__form-group-icon">
+        <i class="fa-solid fa-sort"></i>
+      </label>
+      <input
+        type="text"
+        id="sort-select"
+        class="main__form-group-select"
+        placeholder="Sắp xếp thông tin"
+        readonly
+      />
+      <ul class="main__form-group-list">
+        <li class="main__form-group-item selected">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Sắp xếp
+          thông tin
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;ID tăng dần
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;ID giảm dần
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Ngày tạo đơn
+          tăng dần
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Ngày tạo đơn
+          giảm dần
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Tổng thanh
+          toán tăng dần
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Tổng thanh
+          toán giảm dần
+        </li>
+      </ul>
+    </div>
+    <div class="main__form-group form-group filter">
+      <label for="date-select" class="main__form-group-icon">
+        <i class="fa-solid fa-calendar-days"></i>
+      </label>
+      <label for="">Chọn Ngày tạo đơn</label>
+      <input type="date" id="date-select" class="main__form-group-select" />
+    </div>
+    <div class="main__form-group form-group filter select">
+      <label for="province-select" class="main__form-group-icon">
+        <i class="fa-solid fa-city"></i>
+      </label>
+      <input
+        type="text"
+        id="province-select"
+        class="main__form-group-select"
+        placeholder="Chọn Tỉnh / Thành"
+        readonly
+      />
+      <ul class="main__form-group-list">
+        <li class="main__form-group-item selected">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Chọn Tỉnh /
+          Thành
+        </li>
+      </ul>
+    </div>
+    <div class="main__form-group form-group filter select">
+      <label for="district-select" class="main__form-group-icon">
+        <i class="fa-solid fa-tree-city"></i>
+      </label>
+      <input
+        type="text"
+        id="district-select"
+        class="main__form-group-select"
+        placeholder="Chọn Quận / Huyện"
+        readonly
+      />
+      <ul class="main__form-group-list">
+        <li class="main__form-group-item selected">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Chọn Quận /
+          Huyện
+        </li>
+      </ul>
+    </div>
+    <div class="main__form-group form-group filter select">
+      <label for="status-select" class="main__form-group-icon">
+        <i class="fa-solid fa-signal"></i>
+      </label>
+      <input
+        type="text"
+        id="status-select"
+        class="main__form-group-select"
+        placeholder="Chọn Trạng thái"
+        readonly
+      />
+      <ul class="main__form-group-list">
+        <li class="main__form-group-item selected">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Chọn Trạng
+          thái
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Đã giao hàng
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Đã xác nhận
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Đang chờ xác
+          nhận
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Đã huỷ đơn
+        </li>
+      </ul>
+    </div>
+    <div class="main__form-group buttons orders">
+      <button id="filter-button-order" class="btn filter">
+        <i class="fa-solid fa-filter"></i>&nbsp;Lọc
+      </button>
+      <button id="reset-button-order" class="btn reset">
+        <i class="fa-solid fa-rotate"></i>&nbsp;Đặt lại
+      </button>
+    </div>
+  </div>
+  <div class="main__data orders">
+    <table class="main__table table data">
+      <thead>
+        <tr>
+          <th width="8%">ID</th>
+          <th width="20%">Thời gian tạo đơn</th>
+          <th width="30%">Địa chỉ giao hàng</th>
+          <th width="20%">Tổng thanh toán (VNĐ)</th>
+          <th width="14%">Trạng thái</th>
+          <th width="8%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="order : ${orders}">
+          <td th:text="${order.id}"></td>
+          <td th:text="${order.timeCreate}" class="date"></td>
+          <td th:text="${order.receiverAddress}" class="address left"></td>
+          <td th:text="${order.totalPrice}" class="price"></td>
+          <td
+            th:text="${order.status == 3 ? 'Đã giao hàng' : (order.status == 2 ? 'Đã xác nhận' : (order.status == 1 ? 'Đã huỷ đơn' : 'Đang chờ xác nhận'))}"
+            th:classappend="${order.status == 3 ? 'purple' : (order.status == 2 ? 'green' : (order.status == 1 ? 'red' : 'gray'))}"
+          ></td>
+          <td>
+            <a th:href="@{'/admin/orders/update/' + ${order.id}}">
+              <i class="fa-solid fa-pen-to-square update-button-order"></i>
+            </a>
+            <a th:href="@{'/admin/orders/print/' + ${order.id}}">
+              <i class="fa-solid fa-print print-button-order"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="main__pagination pagination">
+    <!-- Nút Previous -->
+    <a
+      th:if="${currentPage > 1}"
+      th:href="@{'/admin/orders?page=' + ${currentPage - 1} + ${queryString != null ? queryString : ''}}"
+      class="pagination-button previous"
+    >
+      <i class="icon fa-solid fa-chevron-left"></i>
+    </a>
+    <!-- Trang đầu tiên -->
+    <a
+      th:if="${totalPages > 1}"
+      th:href="@{'/admin/orders?page=' + ${1} + ${queryString != null ? queryString : ''}}"
+      class="pagination-button"
+      th:classappend="${currentPage == 1 ? 'active' : ''}"
+    >
+      1
+    </a>
+    <!-- Dấu ... nếu currentPage > 4 -->
+    <span th:if="${currentPage > 4}">...</span>
+    <!-- Các trang lân cận currentPage -->
+    <a
+      th:each="i : ${#numbers.sequence(currentPage - 2, currentPage + 2)}"
+      th:if="${i > 1 && i < totalPages}"
+      th:href="@{'/admin/orders?page=' + ${i} + ${queryString != null ? queryString : ''}}"
+      class="pagination-button"
+      th:classappend="${i == currentPage ? 'active' : ''}"
+      th:text="${i}"
+    >
+    </a>
+    <!-- Dấu ... nếu currentPage < totalPages - 3 -->
+    <span th:if="${currentPage < totalPages - 3}">...</span>
+    <!-- Trang cuối cùng -->
+    <a
+      th:if="${totalPages > 1}"
+      th:href="@{'/admin/orders?page=' + ${totalPages} + ${queryString != null ? queryString : ''}}"
+      class="pagination-button"
+      th:classappend="${currentPage == totalPages ? 'active' : ''}"
+    >
+      [[${totalPages}]]
+    </a>
+    <!-- Nút Next -->
+    <a
+      th:if="${currentPage < totalPages}"
+      th:href="@{'/admin/orders?page=' + ${currentPage + 1} + ${queryString != null ? queryString : ''}}"
+      class="pagination-button next"
+    >
+      <i class="icon fa-solid fa-chevron-right"></i>
+    </a>
+  </div>
+</div>

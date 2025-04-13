@@ -1,0 +1,25 @@
+@mixin flex($justify-value, $align-value) {
+  display: flex;
+  justify-content: $justify-value;
+  align-items: $align-value;
+}
+
+@mixin flexCenter() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin size($width, $height : $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin rounder(
+  $top-left,
+  $top-right: $top-left,
+  $bottom-right: $top-left,
+  $bottom-left: $top-left
+) {
+  border-radius: $top-left $top-right $bottom-right $bottom-left;
+}

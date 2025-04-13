@@ -1,0 +1,178 @@
+<div class="container" th:fragment="content">
+  <div class="row client-main__header">
+    <a th:href="@{/client/shopping}" class="comeback">
+      <i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Quay lại Giỏ hàng
+    </a>
+    <h2 class="client-payment__title client-main__title">Thanh toán</h2>
+  </div>
+  <div class="row">
+    <div class="client-payment__content">
+      <div class="client-payment__info">
+        <form
+          method="post"
+          th:action="@{/client/payment/confirm-checkout}"
+          class="client-payment-info__form"
+        >
+          <div class="client-payment-info__block">
+            <h3 class="client-payment-info__sub-title">Thông tin khách hàng</h3>
+            <div class="client-payment-info__form-group">
+              <input
+                name="receiver-fullname"
+                th:value="${user.fullname}"
+                type="text"
+                class="client-payment-info__fullname"
+                placeholder="Nhập Họ và tên"
+              />
+              <input
+                name="receiver-phone"
+                th:value="${user.phone}"
+                type="text"
+                class="client-payment-info__phone"
+                placeholder="Nhập Số điện thoại"
+              />
+            </div>
+            <div class="client-payment-info__form-group">
+              <input
+                name="receiver-address"
+                th:value="${user.address}"
+                type="text"
+                id="receiver-address"
+                class="client-payment-info__address"
+                placeholder="Nhập Địa chỉ"
+              />
+              <button type="button" id="create-address" class="btn">
+                Thay đổi
+              </button>
+            </div>
+            <p class="client-payment-info__note">
+              (Bạn có thể thay đổi thông tin cá nhân trước khi thanh toán)
+            </p>
+          </div>
+          <div class="client-payment-info__block">
+            <h3 class="client-payment-info__sub-title">
+              Phương thức vận chuyển
+            </h3>
+            <div class="client-payment-info__form-group">
+              <input
+                type="radio"
+                name="ship"
+                value="ship"
+                id="ship"
+                checked
+                hidden
+              />
+              <label for="ship">
+                <i class="fa-solid fa-truck"></i>Giao hàng tận nơi
+                <span class="ship-price">18.000 VNĐ</span>
+              </label>
+            </div>
+          </div>
+          <div class="client-payment-info__block">
+            <h3 class="client-payment-info__sub-title">
+              Phương thức thanh toán
+            </h3>
+            <div class="client-payment-info__form-group">
+              <input
+                name="pay-method"
+                type="radio"
+                value="Thanh toán khi giao hàng (COD)"
+                id="cod"
+                checked
+                hidden
+              />
+              <label for="cod">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+                Thanh toán khi giao hàng (COD)
+              </label>
+            </div>
+            <div class="client-payment-info__form-group">
+              <input
+                name="pay-method"
+                type="radio"
+                value="Thanh toán qua chuyển khoản"
+                id="internet-banking"
+                hidden
+              />
+              <label for="internet-banking">
+                <i class="fa-solid fa-qrcode"></i>
+                Thanh toán qua chuyển khoản
+              </label>
+              <div class="client-payment-info__internet-banking-info"></div>
+            </div>
+            <div class="client-payment-info__form-group purchase-atm">
+              <input
+                name="pay-method"
+                type="radio"
+                value="Thanh toán qua ví VNPAY"
+                id="credit-card"
+                hidden
+              />
+              <label class="label-atm" for="credit-card">
+                <i class="fa-solid fa-credit-card"></i>Thanh toán qua ví VNPAY
+              </label>
+              <div class="client-payment-info__credit-card-info"></div>
+            </div>
+          </div>
+          <div class="client-payment-info__buttons">
+            <button type="submit" class="client-payment-info__submit btn">
+              Hoàn tất đơn hàng
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="client-payment__orders">
+        <div class="client-payment-orders__list">
+          <div
+            th:each="cartDetail : ${user.cart.cartDetails}"
+            class="client-payment-orders__item"
+          >
+            <figure class="client-payment-orders__media">
+              <img
+                th:src="${cartDetail.food.image} != null ? ('/assets/images/foods/' + ${cartDetail.food.image}) : ('/assets/images/others/no-image.png')"
+                th:alt="'food-' + ${cartDetail.food.id} + '-image'"
+                class="client-payment-orders__image"
+              />
+            </figure>
+            <div class="client-payment-orders__info">
+              <div class="client-payment-orders__column">
+                <h3
+                  th:text="${cartDetail.food.name}"
+                  class="client-payment-orders__name line-clamp"
+                  style="--line-clamp: 4"
+                ></h3>
+                <p
+                  th:text="${cartDetail.food.category.name} + ' / ' + ${cartDetail.price}"
+                  class="client-payment-orders__details"
+                ></p>
+              </div>
+              <p
+                th:text="${cartDetail.quantity} * ${cartDetail.price}"
+                class="client-payment-orders__total-price-product"
+              ></p>
+            </div>
+            <span
+              th:text="${cartDetail.quantity > 99 ? '99+' : cartDetail.quantity}"
+              class="client-payment-orders__numbers"
+            ></span>
+          </div>
+        </div>
+        <div class="client-payment-orders__calculation">
+          <p class="client-payment-orders__temp-price">
+            Tạm tính
+            <span th:text="${user.cart.totalPrice}" id="temp-price"></span>
+          </p>
+          <p class="client-payment-orders__ship-price">
+            Phí vận chuyển <span id="ship-price">18.000 VNĐ</span>
+          </p>
+        </div>
+        <p class="client-payment-orders__total-price">
+          Tổng cộng
+          <span
+            th:text="${user.cart.totalPrice + 18000}"
+            id="total-price"
+          ></span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

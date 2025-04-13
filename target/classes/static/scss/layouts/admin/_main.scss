@@ -1,0 +1,129 @@
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/colors" as *;
+@use "../../abstracts/mixins" as *;
+
+/* <===== Main =====> */
+.main {
+  position: relative;
+  top: 0;
+  left: calc($admin-sidebar-width + $admin-space * 2);
+  width: calc(100% - $admin-sidebar-width - $admin-space * 3);
+  margin-top: $admin-space;
+  transition: 0.3s ease;
+
+  .sidebar.hide ~ & {
+    left: calc($admin-sidebar-hidden-width + $admin-space * 2);
+    width: calc(100% - $admin-sidebar-hidden-width - $admin-space * 3);
+  }
+
+  &__content {
+    margin-top: calc($admin-header-height + $admin-space * 2);
+  }
+
+  &__filter {
+    position: relative;
+    @include flex(stretch, center);
+    gap: $admin-space;
+    flex-wrap: wrap;
+  }
+
+  &__filter .title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.8rem;
+  }
+
+  &__form-group {
+    @include size(calc(calc(100% / 5) - 16px), $admin-filter-height);
+  }
+
+  &__form-group.buttons {
+    @include flex(space-between, center);
+    // display: flex;
+  }
+
+  &__form-group .btn.filter {
+    width: 35%;
+    background: $blue-primary-btn-color;
+    border-color: $blue-primary-btn-color;
+  }
+
+  &__form-group .btn.filter:is(:hover, .active) {
+    background: #fff;
+    color: $blue-primary-btn-color;
+  }
+
+  &__form-group .btn.reset {
+    background: $red-secondary-btn-color;
+    border-color: $red-secondary-btn-color;
+  }
+
+  &__form-group .btn.reset:hover {
+    background: #fff;
+    color: $red-secondary-btn-color;
+  }
+
+  &__form-group .btn.add {
+    width: 40%;
+    background: $green-primary-btn-color;
+    border-color: $green-primary-btn-color;
+  }
+
+  &__form-group .btn.add:is(:hover, .active) {
+    background: #fff;
+    color: $green-primary-btn-color;
+  }
+
+  &__form-group.buttons.orders {
+    gap: 0 15px;
+    margin-left: auto;
+  }
+
+  &__form-group.buttons.orders .btn {
+    width: 50%;
+  }
+
+  &__data,
+  &__crud {
+    @include size(100%, 574px);
+    background: $secondary-color;
+    padding: $admin-padding-vertical $admin-padding-horizontal;
+    margin: $admin-space auto 0;
+    border-radius: $admin-border-radius;
+    overflow: hidden;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  }
+
+  &__crud {
+    padding: 24px 26px;
+  }
+
+  &__data.orders {
+    height: 514px;
+  }
+
+  &__crud.height-auto {
+    height: auto;
+  }
+
+  &__crud:where(.category, .lock) {
+    width: 40%;
+  }
+
+  &__total {
+    margin-top: 10px;
+    text-align: right;
+  }
+  &__total span {
+    font-style: italic;
+  }
+  &__total strong {
+    font-weight: bold;
+  }
+
+  &__pagination {
+    position: absolute;
+    bottom: $admin-padding-vertical;
+  }
+}

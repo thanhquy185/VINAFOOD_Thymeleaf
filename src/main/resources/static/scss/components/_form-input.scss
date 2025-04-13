@@ -1,0 +1,179 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/colors" as *;
+@use "../abstracts/mixins" as *;
+
+.form-group.filter {
+  position: relative;
+  @include flex(stretch, center);
+
+  & label {
+    display: inline-block;
+    @include size($admin-filter-height);
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    background: #fff;
+    color: $ternary-color;
+    line-height: $admin-filter-height;
+    text-align: center;
+    border-radius: $admin-border-radius 0 0 $admin-border-radius;
+    transition: 0.2s ease-in-out;
+  }
+
+  & input,
+  & select {
+    @include size(calc(100% - $admin-filter-height), $admin-filter-height);
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    padding: $admin-padding-vertical $admin-padding-horizontal
+      $admin-padding-vertical 0;
+    border-radius: 0 $admin-border-radius $admin-border-radius 0;
+    color: $ternary-color;
+    font-size: 1.6rem;
+    transition: 0.2s ease-in-out;
+  }
+
+  & input:where(:hover, :focus),
+  & select:where(:hover) {
+    border-color: $primary-color;
+  }
+
+  & input::placeholder {
+    color: $ternary-color;
+    transition: 0.2s ease-in-out;
+  }
+
+  & input:where(:hover, :focus)::placeholder,
+  & select:where(:hover):invalid {
+    color: #000;
+  }
+
+  &:has(input:where(:hover, :focus)) label,
+  &:has(select:where(:hover)) label {
+    border-color: $primary-color;
+    color: #000;
+  }
+
+  & input:not(:placeholder-shown),
+  & select:valid {
+    color: #000;
+  }
+
+  &:has(input:not(:placeholder-shown)) label,
+  &:has(select:valid) label {
+    color: #000;
+  }
+
+  & ul {
+    list-style: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    display: none;
+    width: 100%;
+    max-height: calc($admin-filter-height * 5 + 2px);
+    background: white;
+    padding: 0;
+    border: 2px solid #fff;
+    margin: 0;
+    border-radius: 0 0 $admin-border-radius $admin-border-radius;
+    transition: 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
+    cursor: pointer;
+  }
+
+  &:has(ul:hover) input,
+  &:has(ul:hover) input::placeholder,
+  &:has(ul:hover) label {
+    border-color: $primary-color;
+    color: #000;
+  }
+
+  &:has(ul) *:is(label, input) {
+    cursor: default;
+  }
+
+  & ul li {
+    height: $admin-filter-height;
+    // padding: 10px;
+    padding: 0 10px;
+    border-radius: 4px;
+    line-height: $admin-filter-height;
+    transition: 0.2s ease-in-out;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  & ul li span:first-of-type {
+    visibility: hidden;
+  }
+
+  & ul li.selected span:first-of-type {
+    visibility: visible;
+  }
+
+  & ul li.selected {
+    color: $primary-color;
+  }
+  & ul li:hover {
+    background: #f1f1f1;
+  }
+
+  & input[type="date"] {
+    position: relative;
+    z-index: 2;
+    width: calc(100% + 34px);
+    padding-left: 34px;
+    margin-left: -34px;
+    border-radius: $admin-border-radius;
+    cursor: pointer;
+  }
+
+  & input[type="date"]::-webkit-inner-spin-button,
+  & input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  &:has(input[type="date"]) label {
+    position: relative;
+    z-index: 3;
+    line-height: 38px;
+  }
+
+  &:has(input[type="date"]) label:nth-of-type(2) {
+    position: absolute;
+    top: 2px;
+    left: 34px;
+    @include size(calc(100% - 36px), 36px);
+    border: none;
+    border-radius: $admin-border-radius;
+    pointer-events: none;
+    color: #dedede;
+    line-height: 36px;
+    text-align: left;
+    transition: 0.2s ease-in-out;
+  }
+
+  &:has(input[type="date"]) label:nth-of-type(2).hidden {
+    background: transparent !important;
+    color: transparent !important;
+  }
+
+  &:has(input[type="date"]):has(label:nth-of-type(2)) label {
+    color: $ternary-color;
+  }
+
+  &:has(input[type="date"]):has(label:nth-of-type(2).hidden)
+    label:nth-of-type(1) {
+    color: #000;
+  }
+
+  &:has(input[type="date"]:where(:hover, :focus)) label {
+    color: #000 !important;
+  }
+}

@@ -1,0 +1,99 @@
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/colors" as *;
+@use "../../abstracts/mixins" as *;
+
+.sidebar {
+  position: fixed;
+  top: $admin-space;
+  left: $admin-space;
+  z-index: 999;
+  @include size($admin-sidebar-width, calc(100% - $admin-space * 2));
+  background: $secondary-color;
+  // padding: 0 $admin-padding-vertical $admin-padding-horizontal;
+  border-radius: $admin-border-radius;
+  transition: 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
+  scrollbar-width: none;
+
+  &.hide {
+    width: $admin-sidebar-hidden-width;
+  }
+
+  &__brand {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    @include flex(stretch, center);
+    @include size(100%, $admin-header-height);
+    background-color: $secondary-color;
+    padding-bottom: 32px;
+    color: $primary-color;
+    font-size: 2.4rem;
+    font-weight: 600;
+    box-sizing: content-box;
+  }
+
+  &__brand::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 32px;
+    display: block;
+    @include size(calc(100% - $admin-padding-horizontal * 2), 4px);
+    background: $primary-color;
+    margin-left: $admin-padding-horizontal;
+    border-radius: $admin-border-radius;
+  }
+
+  &__brand-image {
+    @include size(40px);
+    margin-left: calc($admin-padding-vertical + 2px);
+    margin-right: 10px;
+  }
+
+  &__menu {
+    width: 100%;
+    padding: 0 $admin-padding-horizontal;
+  }
+  &__item {
+    @include size(100%, 50px);
+    font-weight: 600;
+  }
+
+  &__action {
+    @include flex(stretch, center);
+    @include size(100%, 100%);
+    background: $secondary-color;
+    border-radius: calc($admin-border-radius * 2);
+    color: $ternary-color;
+    font-size: 1.6rem;
+    transition: 0.2s ease-in-out;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &__item:hover &__action {
+    color: $primary-color;
+  }
+
+  &__item.active &__action {
+    background-color: $primary-color;
+    color: $secondary-color;
+  }
+
+  &.hide &__action {
+    width: calc(48px - (4px * 2));
+    transition: width 0.3s ease;
+  }
+
+  &__action-icon &__action-text {
+    pointer-events: none;
+  }
+
+  &__action-icon {
+    @include flex(center, stretch);
+    min-width: calc($admin-sidebar-hidden-width - ((4px + 6px) * 2));
+  }
+}

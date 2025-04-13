@@ -1,0 +1,184 @@
+<div class="container" th:fragment="content">
+  <div class="row client-main__header">
+    <a th:href="@{/client/product}" class="comeback">
+      <i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Quay lại Trang chủ
+    </a>
+    <h2 class="client-product__title client-main__title">Giỏ hàng</h2>
+  </div>
+  <div class="row">
+    <div class="client-shopping__shopping-cart">
+      <div
+        th:if="${cart != null && cart.totalPrice != 0}"
+        class="client-shopping__list-wrap"
+      >
+        <div class="client-shopping__list">
+          <div
+            th:each="cartDetail : ${cart.cartDetails}"
+            class="client-shopping__item"
+          >
+            <img
+              th:src="${cartDetail.food.image} != null ? ('/assets/images/foods/' + ${cartDetail.food.image}) : ('/assets/images/others/no-image.png')"
+              th:alt="'food-' + ${cartDetail.food.id} + '-image'"
+              class="client-shopping__item-image"
+            />
+            <div class="client-shopping__item-info">
+              <a
+                th:href="@{'/client/product/detail/' + ${cartDetail.food.id}}"
+                style="display: block"
+              >
+                <h3
+                  th:text="${cartDetail.food.name}"
+                  class="client-shopping__item-name line-clamp"
+                  style="--line-clamp: 1"
+                ></h3>
+              </a>
+              <p
+                th:text="${cartDetail.food.category.name} + ' / ' + ${cartDetail.price}"
+                class="client-shopping__item-catepri line-clamp"
+                style="--line-clamp: 1"
+              ></p>
+              <q
+                class="client-shopping__item-desc line-clamp"
+                tyle="--line-clamp: 3"
+              >
+                &quot;<span th:text="${cartDetail.food.description}"></span
+                >&quot;
+              </q>
+            </div>
+            <form
+              method="post"
+              th:action="@{'/client/shopping/handle-cart/' + ${cartDetail.id.foodId}}"
+              class="client-shopping__item-form"
+            >
+              <div class="client-shopping__item-quantity-wrap">
+                <button
+                  type="submit"
+                  name="action"
+                  value="plus"
+                  class="client-shopping__item-button btn"
+                >
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+                <input
+                  th:value="${cartDetail.quantity}"
+                  type="text"
+                  class="client-shopping__item-quantity"
+                  readonly
+                />
+                <button
+                  type="submit"
+                  name="action"
+                  value="minus"
+                  class="client-shopping__item-button btn"
+                >
+                  <i class="fa-solid fa-minus"></i>
+                </button>
+              </div>
+              <div class="client-shopping__item-price-wrap">
+                <input
+                  th:value="${cartDetail.price * cartDetail.quantity}"
+                  type="text"
+                  class="client-shopping__item-price"
+                  readonly
+                />
+              </div>
+              <div class="client-shopping__item-remove-wrap">
+                <button
+                  type="submit"
+                  name="action"
+                  value="remove"
+                  class="client-shopping__item-button btn remove"
+                >
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <p
+        th:if="${cart != null && cart.totalPrice != 0}"
+        class="client-shopping__total"
+      >
+        Tổng tiền món ăn: <b th:text="${cart.totalPrice}"></b>
+      </p>
+      <div
+        th:if="${cart != null && cart.totalPrice != 0}"
+        class="client-shopping__buttons"
+      >
+        <a th:href="@{/client/payment}" class="client-shopping__button btn">
+          Đặt hàng
+        </a>
+        <form method="post" th:action="@{/client/shopping/clear}">
+          <button
+            type="submit"
+            id="shopping-clear-btn"
+            class="client-shopping__button btn"
+          >
+            Xoá tất cả
+          </button>
+        </form>
+      </div>
+      <div
+        th:if="${cart == null || cart.totalPrice == 0}"
+        class="client-shopping__no-orders"
+      >
+        <p>KHÔNG CÓ MÓN ĂN NÀO TRONG GIỎ HÀNG !</p>
+      </div>
+      <p
+        th:if="${cart == null || cart.totalPrice == 0}"
+        class="client-shopping__total"
+      >
+        Tổng tiền món ăn: <b>0</b>
+      </p>
+    </div>
+  </div>
+  <div class="row client-main__header">
+    <h2 class="client-product__title client-main__title">Lịch sử mua hàng</h2>
+  </div>
+  <div class="row">
+    <div class="client-shopping__order-history col-12">
+      <div th:if="${totalOrders != 0}" class="client-shopping__orders-warp">
+        <div class="client-shopping__orders">
+          <div th:each="order : ${orders}" class="client-shopping__order">
+            <div class="client-shopping__order-info">
+              <p class="client-shopping__order-id">
+                <b>Mã đơn hàng: </b>
+                <span th:text="'#' + ${order.id}"></span>
+              </p>
+              <p class="client-shopping__order-datetime">
+                <b>Thời gian đặt hàng: </b>
+                <span th:text="${order.timeCreate}"></span>
+              </p>
+            </div>
+            <div class="client-shopping__order-info">
+              <p class="client-shopping__order-total-price">
+                <b>Tổng tiền món ăn: </b>
+                <span th:text="${order.totalPrice}"></span>
+              </p>
+            </div>
+            <p
+              th:text="${order.status} == 3 ? 'Đã giao hàng' : (${order.status} == 2 ? 'Đã xác nhận' : (${order.status} == 1 ? 'Đã huỷ đơn' : 'Đang chờ xác nhận'))"
+              th:classappend="${order.status} == 3 ? 'purple' : (${order.status} == 2 ? 'green' : (${order.status} == 1 ? 'red' : ''))"
+              class="client-shopping__order-status"
+            ></p>
+            <div class="client-shopping__order-buttons">
+              <a
+                th:href="@{'/client/shopping/handle-order/' + ${order.id}}"
+                class="client-shopping__order-button detail"
+              >
+                <i class="fa-solid fa-file-pen"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div th:if="${totalOrders == 0}" class="client-shopping__no-orders col-9">
+        <p>KHÔNG CÓ ĐƠN HÀNG NÀO !</p>
+      </div>
+      <p class="client-shopping__total">
+        Tổng đơn hàng: <b th:text="${totalOrders}"></b>
+      </p>
+    </div>
+  </div>
+</div>

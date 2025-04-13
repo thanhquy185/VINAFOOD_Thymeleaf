@@ -1,0 +1,117 @@
+<div class="main__content" th:fragment="content">
+  <div class="main__filter">
+    <a th:href="@{/admin/orders}" class="comeback">
+      <i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Quay lại
+    </a>
+    <h2 class="title">In phiếu đơn hàng</h2>
+  </div>
+  <div class="main__crud height-auto">
+    <div id="content-print" class="ticket__content" th:object="${order}">
+      <header class="ticket__header">
+        <img
+          src="/assets/images/others/brand-image.png"
+          alt="Logo Web"
+          class="ticket__logo"
+        />
+        <div class="ticket__contact">
+          <p>Cửa hàng bán món ăn VINA FOOD</p>
+          <p>273 An Đ. Vương, Phường 2, Quận 5, Hồ Chí Minh 700000</p>
+          <p>123456789 - 0987654321</p>
+          <p>vinafood@gmail.com.vn</p>
+        </div>
+      </header>
+      <main class="ticket__body order">
+        <h1 class="ticket__title">PHIẾU ĐƠN HÀNG</h1>
+        <p class="ticket__date">
+          Thời gian đặt hàng:
+          <span
+            th:text="${#strings.replace(order.timeCreate, 'T', ' ')}"
+            id="print-order-date-create"
+          ></span>
+        </p>
+        <p class="ticket__info">
+          <b>Mã đơn hàng:</b>
+          <span th:text="'#' + ${order.id}" id="print-order-id"></span>
+        </p>
+        <p class="ticket__info">
+          <b>Nhân viên:</b>
+          <span
+            th:text="${order.employee != null ? order.employee.fullname : ''}"
+            id="print-order-employee"
+          ></span>
+        </p>
+        <p class="ticket__info">
+          <b>Khách hàng:</b>
+          <span
+            th:text="${order.receiverFullname}"
+            id="print-order-customer-fullname"
+          ></span>
+        </p>
+        <p class="ticket__info">
+          <b>Địa chỉ giao hàng:</b>
+          <span
+            th:text="${order.receiverAddress}"
+            id="print-order-address-to-ship"
+          ></span>
+        </p>
+        <p class="ticket__info">
+          <b>Phương thức thanh toán:</b>
+          <span th:text="${order.payMethod}" id="print-order-pay-method"></span>
+        </p>
+        <p class="ticket__info">
+          <b>Tổng thanh toán (VNĐ):</b>
+          <span
+            th:text="${order.totalPrice}"
+            id="print-order-total-price"
+          ></span>
+        </p>
+        <p class="ticket__info">
+          <b>Trạng thái đơn hàng:</b>
+          <span
+            th:text="${order.status == 3 ? 'Đã giao hàng' : (order.status == 2 ? 'Đã xác nhận' : (order.status == 1 ? 'Đã huỷ đơn' : 'Đang chờ xác nhận'))}"
+            id="print-order-status"
+          ></span>
+        </p>
+        <p class="ticket__info"><b>Chi tiết đơn hàng:</b></p>
+        <table id="print-order-table" class="ticket__table order">
+          <thead>
+            <tr>
+              <th width="10%">Mã món ăn</th>
+              <th width="38%" class="name">Tên món ăn</th>
+              <th width="10%">Số lượng</th>
+              <th width="16%">Đơn giá (VNĐ)</th>
+              <th width="26%" class="total">Thành tiền (VNĐ)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="orderDetail : ${order.orderDetails}">
+              <td th:text="${orderDetail.food.id}"></td>
+              <td th:text="${orderDetail.food.name}" class="left"></td>
+              <td th:text="${orderDetail.quantity}"></td>
+              <td th:text="${orderDetail.price}" class="price"></td>
+              <td
+                th:text="${orderDetail.price * orderDetail.quantity}"
+                class="right price"
+              ></td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
+      <footer class="ticket__footer order">
+        <p class="ticket__customer">
+          <span th:text="${currentDate}"></span>
+          <b>Khách hàng</b>
+          (Ký tên, ghi rõ họ tên)
+        </p>
+        <p class="ticket__customer">
+          <span th:text="${currentDate}"></span>
+          <b>Nhân viên lập phiếu</b>
+          (Ký tên, ghi rõ họ tên)
+        </p>
+      </footer>
+    </div>
+    <button id="print-ticket-button" class="ticket__print-btn">
+      <i class="fa-solid fa-file-arrow-down"></i>&nbsp;&nbsp;Tải xuống phiếu
+    </button>
+  </div>
+</div>

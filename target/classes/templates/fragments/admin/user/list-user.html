@@ -1,0 +1,196 @@
+<div class="main__content" th:fragment="content">
+  <div class="main__filter">
+    <div class="main__form-group form-group filter">
+      <label for="find-input" class="main__form-group-icon">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </label>
+      <input
+        type="text"
+        id="find-input"
+        class="main__form-group-input"
+        placeholder="Tìm kiếm thông tin"
+        autocomplete="off"
+      />
+    </div>
+    <div class="main__form-group form-group filter select">
+      <label for="sort-select" class="main__form-group-icon">
+        <i class="fa-solid fa-sort"></i>
+      </label>
+      <input
+        type="text"
+        id="sort-select"
+        class="main__form-group-select"
+        placeholder="Sắp xếp thông tin"
+        readonly
+      />
+      <ul class="main__form-group-list">
+        <li class="main__form-group-item selected">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Sắp xếp
+          thông tin
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;ID tăng dần
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;ID giảm dần
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Họ và tên
+          tăng dần
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Họ và tên
+          giảm dần
+        </li>
+      </ul>
+    </div>
+    <div class="main__form-group form-group filter select">
+      <label for="role-select" class="main__form-group-icon">
+        <i class="fa-solid fa-users"></i>
+      </label>
+      <input
+        type="text"
+        id="role-select"
+        class="main__form-group-select"
+        placeholder="Chọn Phân quyền"
+        readonly
+      />
+      <ul class="main__form-group-list">
+        <li class="main__form-group-item selected">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Chọn Phân
+          quyền
+        </li>
+        <li
+          class="main__form-group-item"
+          th:each="role : ${roles}"
+          th:inline="text"
+        >
+          <span><i class="fa-solid fa-check"></i></span
+          >&nbsp;&nbsp;[[${role.name}]]
+        </li>
+      </ul>
+    </div>
+    <div class="main__form-group form-group filter select">
+      <label for="status-select" class="main__form-group-icon">
+        <i class="fa-solid fa-signal"></i>
+      </label>
+      <input
+        type="text"
+        id="status-select"
+        class="main__form-group-select"
+        placeholder="Chọn Trạng thái"
+        readonly
+      />
+      <ul class="main__form-group-list">
+        <li class="main__form-group-item selected">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Chọn Trạng
+          thái
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Hoạt động
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Tạm dừng
+        </li>
+      </ul>
+    </div>
+    <div class="main__form-group buttons">
+      <button id="filter-button-user" class="btn filter">
+        <i class="fa-solid fa-filter"></i>&nbsp;Lọc
+      </button>
+      <a th:href="@{/admin/users/create}" id="add-button-user" class="btn add">
+        <i class="fa-solid fa-plus"></i>&nbsp;Thêm
+      </a>
+    </div>
+  </div>
+  <div class="main__data">
+    <table class="main__table table data">
+      <thead>
+        <tr>
+          <th width="10%">ID</th>
+          <th width="34%">Họ và tên</th>
+          <th width="14%">Số điện thoại</th>
+          <th width="14%">Phân quyền</th>
+          <th width="14%">Trạng thái</th>
+          <th width="14%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="user : ${users}">
+          <td th:text="${user.id}"></td>
+          <td th:text="${user.fullname}" class="left"></td>
+          <td th:text="${user.phone}"></td>
+          <td th:text="${user.role.name}"></td>
+          <td
+            th:text="${user.status ? 'Hoạt động' : 'Tạm dừng'}"
+            th:classappend="${user.status ? 'green' : 'red'}"
+          ></td>
+          <td>
+            <a th:href="@{'/admin/users/detail/' + ${user.id}}">
+              <i class="fa-solid fa-circle-info"></i>
+            </a>
+            <a th:href="@{'/admin/users/update/' + ${user.id}}">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+            <a th:href="@{'/admin/users/lock/' + ${user.id}}">
+              <i
+                class="fa-solid"
+                th:classappend="${user.status ? 'fa-lock lock-button-user' : 'fa-unlock lock-button-user'}"
+              ></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="main__pagination pagination">
+      <!-- Nút Previous -->
+      <a
+        th:if="${currentPage > 1}"
+        th:href="@{'/admin/users?page=' + ${currentPage - 1} + ${queryString != null ? queryString : ''}}"
+        class="pagination-button previous"
+      >
+        <i class="icon fa-solid fa-chevron-left"></i>
+      </a>
+      <!-- Trang đầu tiên -->
+      <a
+        th:if="${totalPages > 1}"
+        th:href="@{'/admin/users?page=' + ${1} + ${queryString != null ? queryString : ''}}"
+        class="pagination-button"
+        th:classappend="${currentPage == 1 ? 'active' : ''}"
+      >
+        1
+      </a>
+      <!-- Dấu ... nếu currentPage > 4 -->
+      <span th:if="${currentPage > 4}">...</span>
+      <!-- Các trang lân cận currentPage -->
+      <a
+        th:each="i : ${#numbers.sequence(currentPage - 2, currentPage + 2)}"
+        th:if="${i > 1 && i < totalPages}"
+        th:href="@{'/admin/users?page=' + ${i} + ${queryString != null ? queryString : ''}}"
+        class="pagination-button"
+        th:classappend="${i == currentPage ? 'active' : ''}"
+        th:text="${i}"
+      >
+      </a>
+      <!-- Dấu ... nếu currentPage < totalPages - 3 -->
+      <span th:if="${currentPage < totalPages - 3}">...</span>
+      <!-- Trang cuối cùng -->
+      <a
+        th:if="${totalPages > 1}"
+        th:href="@{'/admin/users?page=' + ${totalPages} + ${queryString != null ? queryString : ''}}"
+        class="pagination-button"
+        th:classappend="${currentPage == totalPages ? 'active' : ''}"
+      >
+        [[${totalPages}]]
+      </a>
+      <!-- Nút Next -->
+      <a
+        th:if="${currentPage < totalPages}"
+        th:href="@{'/admin/users?page=' + ${currentPage + 1} + ${queryString != null ? queryString : ''}}"
+        class="pagination-button next"
+      >
+        <i class="icon fa-solid fa-chevron-right"></i>
+      </a>
+    </div>
+  </div>
+</div>

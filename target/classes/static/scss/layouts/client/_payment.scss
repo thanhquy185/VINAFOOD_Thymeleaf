@@ -1,0 +1,399 @@
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/colors" as *;
+@use "../../abstracts/mixins" as *;
+
+.client-payment {
+  &__content {
+    @include flex(stretch, flex-start);
+    gap: $grid-gutter-width;
+    width: 100%;
+  }
+
+  &__info {
+    width: 50%;
+    background: #fff;
+    padding: 24px 26px;
+    border-radius: 12px;
+  }
+
+  &__info {
+    width: 46%;
+  }
+
+  &__orders {
+    width: calc(100% - 46%);
+  }
+
+  &-info__block + &-info__block {
+    margin-top: 36px;
+  }
+
+  &-info__title {
+    position: relative;
+    padding-bottom: 7px;
+    font-size: 2.2rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &-info__title::after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    content: "";
+    display: block;
+    background: #000;
+    width: 100%;
+    height: 2px;
+  }
+
+  &-info__sub-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+
+  &-info__form input {
+    @include size(100%, 40px);
+    padding: 0 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 12px;
+    color: #737373;
+    line-height: 40px;
+    transition: 0.2s ease-in-out;
+  }
+
+  &-info__form-group
+    input:not([type="date"]):where(:hover, :focus, :not(:placeholder-shown)),
+  &-info__form-group:has(i:hover) :where(input, select) {
+    color: #000;
+    border-color: #000;
+    box-shadow: 0px 0px 2px 4px rgba(4, 71, 133, 0.1);
+  }
+
+  &-info__block .ship-price {
+    margin-left: auto;
+  }
+
+  &-info__form-group + &-info__form-group {
+    margin-top: 14px;
+  }
+
+  &-info__form-group &-info__fullname {
+    width: calc(64% - 7px);
+    float: left;
+  }
+
+  &-info__form-group &-info__phone {
+    width: calc(36% - 7px);
+    margin-left: 14px;
+  }
+
+  // &-info__form-group:nth-of-type(4) {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   flex-wrap: wrap;
+  //   gap: 8px;
+  // }
+
+  &-info__form-group {
+    position: relative;
+  }
+
+  &-info__form-group button#create-address {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    border-radius: 0 12px 12px 0;
+    font-size: 1.4rem;
+  }
+
+  &-info__form-group:has(button#create-address) input {
+    padding-right: calc(20% + 10px);
+  }
+
+  &-info__note {
+    margin-top: 10px;
+    color: $ternary-color;
+    // font-size: 1.4rem;
+    font-style: italic;
+  }
+
+  &-info__form-group > [type="radio"] + label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    border: 1px solid #d9d9d9;
+    border-radius: 12px;
+    color: #737373;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+  }
+
+  &-info__form-group > [type="radio"] + label:hover,
+  &-info__form-group > [type="radio"]:checked + label {
+    border-color: #000;
+    box-shadow: 0px 0px 2px 4px rgba(4, 71, 133, 0.1);
+  }
+
+  &-info__form-group > [type="radio"] + label i {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    margin: 0 8px;
+    color: #000;
+    line-height: 36px;
+    text-align: center;
+  }
+
+  &-info__form-group > [type="radio"] + label::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #d9d9d9;
+    border-radius: 50%;
+    transition: border-color 0.3s, background-color 0.3s;
+  }
+
+  &-info__form-group > [type="radio"] + label::after {
+    content: "";
+    position: absolute;
+    top: 27px;
+    left: 22px;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+  }
+
+  &-info__form-group > [type="radio"]:checked + label::before {
+    border-color: $primary-color;
+    background: $primary-color;
+  }
+
+  figure:has(&-info__internet-banking-image) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-info__internet-banking-image {
+    max-width: 200px;
+    max-height: 200px;
+  }
+
+  &-info__internet-banking-details {
+    margin-bottom: 12px;
+  }
+
+  &-info__internet-banking-detail b {
+    font-weight: 600;
+  }
+
+  &-info__internet-banking-detail + &-info__internet-banking-detail {
+    margin-top: 6px;
+  }
+
+  &-info__cards {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  &-info__card > [type="radio"] + label {
+    transition: color 0.2s;
+  }
+
+  &-info__card > [type="radio"] + label i {
+    font-size: 5rem;
+  }
+
+  &-info__card > [type="radio"]:checked + label {
+    color: $primary-color;
+  }
+
+  &-info__card-form-group {
+    margin-top: 6px;
+  }
+
+  &-info__card-form-group > input {
+    padding: 4px 6px;
+    border: 1px solid #ccc;
+    border-radius: 0;
+  }
+
+  &-info__card-form-group > input:not(:placeholder-shown) {
+    border-color: $primary-color;
+  }
+
+  &-info__buttons {
+    @include flexCenter();
+    margin-top: 48px;
+  }
+
+  &-info__comeback-button {
+    color: #ccc;
+    font-style: italic;
+    transition: color 0.2s;
+  }
+
+  &-info__comeback-button:hover {
+    color: #000;
+    font-style: normal;
+  }
+
+  &-info__submit {
+    @include size(40%, 40px);
+    background: $primary-color;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 600;
+    transition: background-color 0.2s;
+  }
+
+  // &-info__submit:hover {
+  //   background: $primary-color;
+  &__orders {
+    position: sticky;
+    top: 108px;
+    left: 0;
+    z-index: 2;
+    //   width: 100%;
+  }
+
+  &-orders__item,
+  &-orders__body {
+    display: flex;
+    // align-items: center;
+  }
+
+  &-orders__body {
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 8px 0 8px 10px;
+  }
+
+  &-orders__list {
+    max-height: 363px;
+    overflow-y: auto;
+  }
+
+  &-orders__item {
+    position: relative;
+    height: calc(100% / 5);
+  }
+
+  &-orders__item:first-of-type {
+    margin-top: 15px;
+  }
+
+  &-orders__item + &-orders__item {
+    margin-top: 24px;
+  }
+
+  figure:has(&-orders__image) {
+    margin-right: 20px;
+    @include size(26%, 100px);
+    background: #fff;
+  }
+
+  &-orders__image {
+    @include size(100%, 100px);
+    // object-fit: contain;
+  }
+
+  &-orders__info {
+    width: calc(100% - 26%);
+  }
+
+  &-orders__name,
+  &-orders__total-price-product {
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+
+  &-orders__details {
+    margin-top: 4px;
+    color: #777;
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  &-orders__total-price-product {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  &-orders__numbers {
+    position: absolute;
+    top: -15px;
+    left: calc(26% - 4px - 15px);
+    @include size(30px);
+    background: $primary-color;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.4rem;
+    line-height: 30px;
+    text-align: center;
+  }
+
+  &-orders__calculation,
+  &-orders__total-price {
+    margin-top: 26px;
+  }
+
+  &-orders__calculation::before,
+  &-orders__total-price::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #393939;
+    margin-bottom: 24px;
+  }
+  &-orders__temp-price,
+  &-orders__ship-price {
+    position: relative;
+    color: #393939;
+    font-size: 1.8rem;
+  }
+  &-orders__temp-price span,
+  &-orders__ship-price span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: $primary-color;
+    font-weight: 600;
+    font-size: 2rem;
+  }
+
+  &-orders__ship-price {
+    margin-top: 8px;
+  }
+
+  &-orders__total-price {
+    position: relative;
+    color: #393939;
+    font-size: 1.8rem;
+  }
+
+  &-orders__total-price span {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: $primary-color;
+    font-size: 2.4rem;
+    font-weight: 600;
+  }
+  // }
+}

@@ -1,0 +1,168 @@
+<div class="main__content" th:fragment="content">
+  <div class="main__filter">
+    <a th:href="@{/admin/users}" class="comeback">
+      <i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Quay lại
+    </a>
+    <h2 class="title">Chi tiết người dùng</h2>
+  </div>
+  <div class="main__crud height-auto">
+    <form
+      th:object="${user}"
+      id="detail-user-form"
+      class="main-crud__form"
+      autocomplete="off"
+    >
+      <div class="main-crud__row">
+        <div class="main-crud__form-group image">
+          <label for="detail-user-image">Hình ảnh</label>
+          <img
+            th:src="${user.image} != null ? ('/assets/images/users/' + ${user.image}) : ('/assets/images/others/no-image.png')"
+            th:alt="'user-' + ${user.id} + '-image'"
+          />
+          <input
+            th:field="*{image}"
+            type="text"
+            id="detail-user-image"
+            accept="image/*"
+            disabled
+          />
+        </div>
+        <div class="main-crud__form-group">
+          <label for="detail-user-id">Mã người dùng&nbsp;<span>*</span></label>
+          <input
+            th:field="*{id}"
+            type="text"
+            id="detail-user-id"
+            class="text-center"
+            readonly
+          />
+        </div>
+        <div class="main-crud__form-group">
+          <label for="detail-user-date_create">
+            Ngày tạo tài khoản&nbsp;<span>*</span>
+          </label>
+          <i class="fa-solid fa-calendar-days"></i>
+          <input
+            th:field="*{timeCreate}"
+            type="datetime"
+            id="detail-user-date_create"
+            readonly
+          />
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group">
+          <label for="detail-user-username">
+            Tên tài khoản&nbsp;<span>*</span>
+          </label>
+          <input
+            th:field="*{username}"
+            type="text"
+            id="detail-user-username"
+            readonly
+          />
+        </div>
+        <div class="main-crud__form-group">
+          <label for="detail-user-password">Mật khẩu&nbsp;<span>*</span></label>
+          <input
+            th:field="*{password}"
+            type="password"
+            id="detail-user-password"
+            readonly
+          />
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group">
+          <label for="detail-user-role">Phân quyền&nbsp;<span>*</span></label>
+          <i class="fa-solid fa-chevron-down"></i>
+          <select th:field="*{role}" id="detail-user-role" disabled>
+            <option
+              th:each="role : ${roles}"
+              th:value="${role.id}"
+              th:text="${role.name}"
+            ></option>
+          </select>
+        </div>
+        <div class="main-crud__form-group">
+          <label for="detail-user-status">Trạng thái&nbsp;<span>*</span></label>
+          <i class="fa-solid fa-chevron-down"></i>
+          <select th:field="*{status}" id="detail-user-status" disabled>
+            <option value="true">Hoạt động</option>
+            <option value="false">Tạm dừng</option>
+          </select>
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group">
+          <label for="detail-user-fullname">
+            Họ và tên&nbsp;<span>*</span>
+          </label>
+          <input
+            th:field="*{fullname}"
+            type="text"
+            id="detail-user-fullname"
+            readonly
+          />
+        </div>
+        <div class="main-crud__form-group half">
+          <label for="detail-user-birthday">Ngày sinh</label>
+          <i class="fa-solid fa-calendar-days"></i>
+          <input
+            th:field="*{birthday}"
+            type="date"
+            id="detail-user-birthday"
+            readonly
+          />
+        </div>
+        <div class="main-crud__form-group half">
+          <label for="detail-user-gender">Giới tính</label>
+          <i class="fa-solid fa-chevron-down"></i>
+          <select th:field="*{gender}" id="detail-user-gender" disabled>
+            <option value="" selected>Chọn Giới tính</option>
+            <option value="false">Nữ</option>
+            <option value="true">Nam</option>
+          </select>
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group">
+          <label for="detail-user-phone">
+            Số điện thoại&nbsp;<span>*</span>
+          </label>
+          <input
+            th:field="*{phone}"
+            type="text"
+            id="detail-user-phone"
+            readonly
+          />
+        </div>
+        <div class="main-crud__form-group">
+          <label for="detail-user-email">Email</label>
+          <input
+            th:field="*{email}"
+            type="text"
+            id="detail-user-email"
+            readonly
+          />
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group user full">
+          <label for="detail-user-address">Địa chỉ&nbsp;<span>*</span></label>
+          <input
+            th:field="*{address}"
+            type="text"
+            id="detail-user-address"
+            readonly
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

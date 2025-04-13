@@ -1,0 +1,23 @@
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/colors" as *;
+@use "../../abstracts/mixins" as *;
+
+.client-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background: $secondary-color;
+  padding: 14px 0;
+  border-radius: 0 0 $admin-border-radius $admin-border-radius;
+  transition: 0.3s ease;
+
+  &.scroll {
+    box-shadow: 0px 2px 8px rgba(4, 71, 133, 0.2);
+  }
+
+  &__navbar {
+    @include flex(stretch, center);
+    padding: 0;
+  }
+}

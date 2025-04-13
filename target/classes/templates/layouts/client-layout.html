@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html
+  lang="vi"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client</title>
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Styles CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header class="client-header">
+      <div class="container">
+        <nav class="client-header__navbar">
+          <a href="/client/product" class="client-navbar__brand">
+            <img
+              src="/assets/images/others/brand-image.png"
+              alt="brand-image"
+              class="client-navbar__brand-image"
+            />
+            <strong class="client-navbar__brand-text">VINA FOOD</strong>
+          </a>
+          <div class="client-navbar__find">
+            <input
+              type="text"
+              id="product-find-input"
+              class="client-navbar__find-input"
+              placeholder="Nhập thông tin món ăn"
+              autocomplete="off"
+            />
+            <button type="button" class="client-navbar__find-button btn">
+              <i class="fa-solid fa-magnifying-glass"></i>&nbsp;Tìm
+            </button>
+          </div>
+          <div th:if="${session._role == null}" class="client-navbar__actions">
+            <a href="/login" class="client-navbar__login client-navbar__action">
+              Đăng nhập
+            </a>
+            <span>|</span>
+            <a
+              href="/register"
+              class="client-navbar__register client-navbar__action"
+            >
+              Đăng ký
+            </a>
+          </div>
+          <div th:if="${session._role != null}" class="client-navbar__icons">
+            <a
+              th:if="${session._role != 'USER'}"
+              href="/admin/orders"
+              class="client-navbar__icon"
+              title="Chuyển đến trang Quản lý"
+            >
+              <i class="fa-solid fa-gear"></i>
+            </a>
+            <a
+              href="/client/info"
+              class="client-navbar__icon"
+              title="Thông tin cá nhân"
+            >
+              <i class="fa-solid fa-user"></i>
+            </a>
+            <span th:if="${session.hasSomeFoodsInCart}">Có mua hàng</span>
+            <a
+              href="/client/shopping"
+              class="client-navbar__icon"
+              title="Thông tin mua hàng"
+            >
+              <i class="fa-solid fa-shopping-cart"></i>
+            </a>
+            <a href="/logout" class="client-navbar__icon">
+              <i class="fa-solid fa-power-off"></i>
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="client-main">
+      <!-- Content -->
+      <div
+        id="main-content"
+        th:replace="@{'fragments/client/' + ${page}} :: content"
+      ></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="client-footer">
+      <div class="container">
+        <div class="row"></div>
+      </div>
+    </footer>
+
+    <script type="module" src="/js/client/reloadPage.js"></script>
+  </body>
+</html>

@@ -1,0 +1,155 @@
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/colors" as *;
+@use "../../abstracts/mixins" as *;
+
+.nav {
+  position: fixed;
+  top: $admin-space;
+  left: calc($admin-sidebar-width + $admin-space * 2);
+  z-index: 999;
+  @include flex(stretch, center);
+  @include size(
+    calc(100% - $admin-sidebar-width - $admin-space * 3),
+    $admin-header-height
+  );
+  background: $secondary-color;
+  padding: $admin-padding-vertical $admin-padding-horizontal;
+  border-radius: $admin-border-radius;
+  transition: 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .sidebar.hide + & {
+    left: calc($admin-sidebar-hidden-width + $admin-space * 2);
+    width: calc(100% - $admin-sidebar-hidden-width - $admin-space * 3);
+  }
+
+  &__left,
+  &__right {
+    @include flex(stretch, center);
+    gap: 0 6px;
+  }
+
+  &__right {
+    margin-left: auto;
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 2rem;
+  }
+
+  &__action {
+    @include flexCenter();
+    @include size(40px);
+    border-radius: 50%;
+    font-size: 2rem;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+  }
+
+  &__action:hover {
+    background: $tetrad-color;
+  }
+
+  &__action-icon {
+    pointer-events: none;
+    transition: 0.2s ease-in-out;
+  }
+
+  &__action:hover &__action-icon[class*="bars"] {
+    color: $primary-color;
+  }
+
+  &__action:hover &__action-icon[class*="lightbulb"] {
+    color: #f6cd61;
+  }
+
+  &__action:hover &__action-icon[class*="gear"] {
+    color: #8b9dc3;
+  }
+
+  &__action:hover &__action-icon[class*="power-off"] {
+    color: #d62d20;
+  }
+
+  &__action-image {
+    @include size(25px);
+  }
+
+  & .profile-block {
+    // position: relative;
+  }
+
+  &__avatar {
+    @include size(30px);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + 10px); // Căn theo navbar không phải nút
+    right: 0;
+    width: 22%;
+    display: none;
+    background: white;
+    padding: 0;
+    margin: 0;
+    border-radius: $admin-border-radius;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  &__dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+  }
+  &__dropdown-header-avatar {
+    @include size(40px);
+    border-radius: 50%;
+  }
+
+  &__dropdown-header-info {
+    font-size: 1.6rem;
+    text-align: left;
+  }
+
+  &__dropdown-header-name {
+    font-weight: 600;
+  }
+
+  &__dropdown-header-work {
+    display: block;
+    margin-top: 2px;
+    color: #777;
+    font-size: 1.4rem;
+  }
+
+  &__dropdown-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__dropdown-item {
+    display: block;
+  }
+
+  &__dropdown-item a {
+    @include flex(stretch, center);
+    gap: 10px;
+    padding: 12px;
+    font-size: 1.6rem;
+    color: black;
+    transition: 0.2s ease-in-out;
+  }
+
+  &__dropdown-item a:hover {
+    background: #f1f1f1;
+    color: $primary-color;
+  }
+
+  &__dropdown-item a i {
+    width: 20px;
+  }
+}

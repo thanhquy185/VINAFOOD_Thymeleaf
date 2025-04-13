@@ -1,0 +1,115 @@
+<div class="main__content" th:fragment="content">
+  <div class="main__filter">
+    <a th:href="@{/admin/foods}" class="comeback">
+      <i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Quay lại
+    </a>
+    <h2 class="title">Cập nhật món ăn</h2>
+  </div>
+  <div class="main__crud food">
+    <form
+      method="post"
+      th:action="@{'/admin/foods/update/' + ${food.id}}"
+      th:object="${food}"
+      id="update-food-form"
+      class="main-crud__form"
+      enctype="multipart/form-data"
+      autocomplete="off"
+    >
+      <div class="main-crud__row">
+        <div class="main-crud__form-group image food">
+          <label for="update-food-image">Hình ảnh</label>
+          <img
+            th:src="${food.image} != null ? ('/assets/images/foods/' + ${food.image}) : ('/assets/images/others/no-image.png')"
+            alt="food-image"
+          />
+          <input
+            type="file"
+            id="update-food-image"
+            accept="image/*"
+            name="file-image"
+          />
+        </div>
+        <div class="main-crud__form-group">
+          <label>Mã món ăn<span>*</span></label>
+          <input
+            th:field="*{id}"
+            type="text"
+            id="update-food-id"
+            class="text-center"
+            readonly
+          />
+        </div>
+        <div class="main-crud__form-group">
+          <label for="update-food-name">Tên món ăn<span>*</span></label>
+          <i class="fa-solid fa-circle-info error-icon"></i>
+          <input
+            th:field="*{name}"
+            type="text"
+            id="update-food-name"
+            placeholder="Nhập Tên món ăn"
+            autofocus
+          />
+          <p id="error-name" class="error-text"></p>
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group">
+          <label for="update-food-category">Loại món ăn<span>*</span></label>
+          <i class="fa-solid fa-chevron-down icon"></i>
+          <select th:field="*{category}" id="update-food-category">
+            <option value="" selected>Chọn Loại món ăn</option>
+            <option
+              th:each="category : ${categories}"
+              th:value="${category.id}"
+              th:text="${category.name}"
+            ></option>
+          </select>
+        </div>
+        <div class="main-crud__form-group">
+          <label for="update-food-price">Giá bán<span>*</span></label>
+          <input
+            th:field="*{price}"
+            type="text"
+            id="update-food-price"
+            placeholder="Nhập Giá bán"
+          />
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group food">
+          <label for="update-food-description">Mô tả</label>
+          <textarea
+            th:field="*{description}"
+            id="update-food-description"
+            placeholder="Nhập Mô tả"
+          ></textarea>
+        </div>
+        <div class="main-crud__form-group">
+          <label for="update-food-inventory">Tồn kho<span>*</span></label>
+          <input
+            th:field="*{inventory}"
+            type="text"
+            id="update-food-inventory"
+          />
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group">
+          <label for="update-food-status">Trạng thái<span>*</span></label>
+          <i class="fa-solid fa-chevron-down icon"></i>
+          <select th:field="*{status}" id="update-food-status" disabled>
+            <option value="true">Đang bán</option>
+            <option value="false">Dừng bán</option>
+          </select>
+        </div>
+      </div>
+      <div class="main-crud__buttons">
+        <button type="submit" class="btn update">Xác nhận</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,126 @@
+<div class="container" th:fragment="content">
+  <div class="row client-main__header">
+    <a th:href="@{/client/product}" class="comeback">
+      <i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Quay lại Trang chủ
+    </a>
+    <h2 class="client-product__title client-main__title">
+      Thông tin người dùng
+    </h2>
+  </div>
+  <div class="row">
+    <form
+      method="post"
+      th:action="@{/client/info}"
+      th:object="${userLogin}"
+      id="info-form"
+      class="client-info__form"
+      enctype="multipart/form-data"
+      autocomplete="off"
+    >
+      <div class="client-info__form-row">
+        <div class="client-info__form-group avatar">
+          <label for="info-avatar">Hình ảnh</label>
+          <img
+            th:src="${userLogin.image} != null ? ('/assets/images/users/' + ${userLogin.image}) : ('/assets/images/others/no-image.png')"
+            th:alt="'user-' + ${userLogin.id} + '-image'"
+          />
+          <input name="file-image" type="file" id="info-image" accept="image/*" />
+        </div>
+        <div class="client-info__form-group">
+          <label for="info-username">Tên tài khoản</label>
+          <input
+            th:field="*{username}"
+            type="text"
+            id="info-username"
+            readonly
+          />
+        </div>
+        <div class="client-info__form-group">
+          <label for="info-password">Mật khẩu</label>
+          <input
+            type="text"
+            id="info-password"
+            placeholder="Mật khẩu đã bị ẩn đi"
+            readonly
+          />
+        </div>
+      </div>
+      <div class="client-info__form-row">
+        <div class="client-info__form-group"></div>
+        <div class="client-info__form-group">
+          <label for="info-fullname">Họ và tên</label>
+          <input
+            th:field="*{fullname}"
+            type="text"
+            id="info-fullname"
+            placeholder="Nhập Họ và tên"
+          />
+        </div>
+        <div class="client-info__form-group half">
+          <label for="info-date">Ngày sinh</label>
+          <i class="fa-solid fa-calendar-days"></i>
+          <input
+            th:field="*{birthday}"
+            type="date"
+            th:classappend="${userLogin.birthday != null ? 'hasValidDate' : ''}"
+            id="info-date"
+          />
+        </div>
+        <div class="client-info__form-group half">
+          <label fof="info-gender">Giới tính</label>
+          <i class="fa-solid fa-chevron-down"></i>
+          <select
+            th:field="*{gender}"
+            th:classappend="${userLogin.gender != null ? 'changed' : ''}"
+            id="info-gender"
+          >
+            <option value="" selected>Chọn Giới tính</option>
+            <option value="false">Nữ</option>
+            <option value="true">Nam</option>
+          </select>
+        </div>
+      </div>
+      <div class="client-info__form-row">
+        <div class="client-info__form-group"></div>
+        <div class="client-info__form-group">
+          <label for="info-phone">Số điện thoại</label>
+          <input
+            th:field="*{phone}"
+            type="text"
+            id="info-phone"
+            placeholder="Nhập Số điện thoại"
+          />
+        </div>
+        <div class="client-info__form-group">
+          <label for="info-email">Email</label>
+          <input
+            th:field="*{email}"
+            type="text"
+            id="info-email"
+            placeholder="Nhập Email"
+          />
+        </div>
+      </div>
+      <div class="client-info__form-row">
+        <div class="client-info__form-group"></div>
+        <div class="client-info__form-group address">
+          <label for="info-address">Địa chỉ</label>
+          <input
+            th:field="*{address}"
+            type="text"
+            id="info-address"
+            placeholder="Nhập Địa chỉ"
+          />
+          <button type="button" id="create-address" class="btn">Tạo</button>
+        </div>
+      </div>
+      <div class="client-info__form-row button">
+        <input th:field="*{role}" hidden type="text" />
+        <button type="submit" class="client-info__button btn">
+          <i class="fa-solid fa-userLogin-pen"></i>&nbsp;&nbsp;Cập nhật thông
+          tin
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

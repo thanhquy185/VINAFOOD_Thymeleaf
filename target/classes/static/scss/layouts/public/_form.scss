@@ -1,0 +1,180 @@
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/colors" as *;
+@use "../../abstracts/mixins" as *;
+
+.form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  width: 30%;
+  background: #fff;
+  padding: 24px 26px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  // &__title {
+  //   position: relative;
+  //   top: -24px;
+  //   left: -26px;
+  //   width: calc(100% + 26px * 2);
+  //   background: $primary-color;
+  //   padding: 20px 0;
+  //   border-radius: 20px 20px 0 0;
+  //   color: #fff;
+  //   font-size: 2.8rem;
+  //   font-weight: bold;
+  //   text-align: center;
+  // }
+
+  &__title {
+    // padding-bottom: 32px;
+    border-radius: 20px 20px 0 0;
+    color: $primary-color;
+    font-size: 2.8rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &__line {
+    @include size(100%, 5px);
+    margin: 20px 0 24px;
+    background: $primary-color;
+    border-radius: 8px;
+  }
+
+  &__form-group {
+    position: relative;
+  }
+
+  &__form-group + &__form-group {
+    margin-top: 32px;
+  }
+
+  &__form-group label,
+  &__form-group input,
+  &__form-group i {
+    font-size: 1.8rem;
+    transition: 0.2s ease-in-out;
+  }
+
+  &__form-group label,
+  &__form-group input {
+    @include size(100%, 40px);
+  }
+
+  &__form-group input {
+    padding: 0 37px 0 10px;
+    border: 1px solid #dedede;
+    margin-top: 8px;
+    border-radius: 4px;
+  }
+
+  &__form-group input::placeholder {
+    color: #dedede;
+  }
+
+  &__form-group:has(i:hover) input,
+  &__form-group input:where(:hover, :focus, :not(:placeholder-shown)) {
+    border-color: #000;
+    box-shadow: 0px 0px 2px 2px rgba(4, 71, 133, 0.1);
+  }
+
+  &__form-group i:hover,
+  &__form-group input:not(:placeholder-shown),
+  &__form-group:has(input:where(:hover, :focus, :not(:placeholder-shown))) i {
+    color: #000;
+  }
+
+  &__form-group i {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    @include size(40px, 40px);
+    padding-left: 10px;
+    color: #dedede;
+    line-height: 40px;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+  }
+
+  &__form-group i:hover {
+    color: $primary-color;
+  }
+
+  &__form-group button {
+    @include size(100%, 40px);
+    border-radius: 4px;
+    margin-top: 10px;
+    font-size: 1.8rem;
+  }
+
+  &__form-group button:hover {
+    background: #fff;
+    color: $primary-color;
+  }
+
+  &__split {
+    @include flex(stretch, center);
+    gap: 0 10px;
+    margin-top: 20px;
+    color: #dedede;
+    text-align: center;
+  }
+
+  &__split::before,
+  &__split::after {
+    content: "";
+    display: inline-block;
+    width: 50%;
+    height: 2px;
+    background: #dedede;
+    border-radius: 6px;
+  }
+
+  &__social {
+    @include flexCenter();
+    gap: 0 16px;
+    margin-top: 18px;
+  }
+
+  &__social a {
+    @include flexCenter();
+    @include size(50%, 40px);
+    border: 1px solid #d4d4d4;
+    border-radius: 4px;
+    color: #000;
+    transition: 0.2s ease-in-out;
+  }
+
+  &__social a img {
+    @include size(24px, 24px);
+  }
+
+  &__social a:hover {
+    border-color: #000;
+    box-shadow: 0px 0px 2px 2px rgba(4, 71, 133, 0.1);
+  }
+
+  &__action {
+    margin-top: 28px;
+    color: #dedede;
+    text-align: center;
+  }
+
+  &__action.left {
+    margin-top: 12px;
+    font-size: 1.4rem;
+    text-align: left;
+  }
+
+  &__action a {
+    display: inline-block;
+    color: $blue-primary-btn-color;
+    transition: 0.2s ease-in-out;
+  }
+
+  &__action a:hover {
+    color: #0057b4;
+  }
+}

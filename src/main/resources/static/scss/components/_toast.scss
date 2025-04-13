@@ -1,0 +1,115 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/colors" as *;
+@use "../abstracts/mixins" as *;
+
+.toast {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 0 12px;
+  background: #fff;
+  padding: 24px 78px 24px 26px;
+  border: 5px solid $green-secondary-btn-color;
+  border-bottom: none;
+  border-radius: 14px;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+
+  &.show {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  &.hide {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  &.top-right {
+    transform: translateX(100%);
+  }
+
+  &.top-right.show {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  &.top-right.hide {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  &:where(.top-right)::backdrop {
+    background: none;
+  }
+
+  &.info {
+    border-color: $blue-primary-btn-color;
+  }
+
+  &.success {
+    border-color: $green-secondary-btn-color;
+  }
+
+  &.warning {
+    border-color: $yellow-secondary-btn-color;
+  }
+
+  &.error {
+    border-color: $red-secondary-btn-color;
+  }
+
+  &__image {
+    @include size(60px);
+  }
+
+  &__content {
+    color: $green-secondary-btn-color;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  &.info &__content {
+    color: $blue-primary-btn-color;
+  }
+
+  &.success &__content {
+    color: $green-secondary-btn-color;
+  }
+
+  &.warning &__content {
+    color: $yellow-secondary-btn-color;
+  }
+
+  &.error &__content {
+    color: $red-secondary-btn-color;
+  }
+
+  &__progress {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    @include size(0, 5px);
+    background: $green-secondary-btn-color;
+    // border-radius: 8px;
+    transform-origin: left;
+  }
+
+  &.info &__progress {
+    background: $blue-primary-btn-color;
+  }
+
+  &.success &__progress {
+    background: $green-secondary-btn-color;
+  }
+
+  &.warning &__progress {
+    background: $yellow-secondary-btn-color;
+  }
+
+  &.error &__progress {
+    background: $red-secondary-btn-color;
+  }
+}

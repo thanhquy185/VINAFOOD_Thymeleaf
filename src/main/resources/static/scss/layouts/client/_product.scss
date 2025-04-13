@@ -1,0 +1,300 @@
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/colors" as *;
+@use "../../abstracts/mixins" as *;
+
+.client-product {
+  &__filter,
+  &__item,
+  &__no-foods {
+    width: 100%;
+    background: #fff;
+    border-radius: 12px;
+  }
+
+  &__filter {
+    position: sticky;
+    top: calc(78px + $grid-gutter-width * 2);
+    left: 0;
+    z-index: 555;
+    @include size(calc(25% - $grid-gutter-width / 2), 100%);
+    padding: 14px 16px;
+  }
+
+  &__filter-item + &__filter-item {
+    margin-top: 16px;
+  }
+
+  &__filter-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 700;
+    cursor: default;
+  }
+
+  &__filter-title::before,
+  &__filter-title::after {
+    content: "";
+    display: inline-block;
+    width: calc(50% - var(--split-width, 48px));
+    height: 4px;
+    background: #000;
+    border-radius: 8px;
+  }
+
+  &__filter-item:hover &__filter-title {
+    color: $primary-color;
+  }
+
+  &__filter-item:hover &__filter-title::before,
+  &__filter-item:hover &__filter-title::after {
+    background: $primary-color;
+  }
+
+  &__filter-group {
+    position: relative;
+  }
+
+  &__filter-group.hidden {
+    display: none;
+  }
+
+  &__filter-group > * {
+    cursor: pointer;
+  }
+
+  &__filter-group:first-of-type {
+    margin-top: 8px;
+  }
+
+  &__filter-group input {
+    visibility: hidden;
+  }
+
+  &__filter-group label {
+    display: inline-block;
+    font-size: 1.8rem;
+    width: calc(100% - 26px);
+    padding: 6px 0;
+    // width: 100%;
+  }
+
+  &__filter-group label::before,
+  &__filter-group label::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+  }
+
+  &__filter-group input[type="radio"] + label::before {
+    top: 8px;
+    left: 4px;
+    @include size(12px);
+    border: 1px solid #000;
+    border-radius: 999px;
+  }
+
+  &__filter-group input[type="radio"] + label::after {
+    top: 10px;
+    left: 6px;
+    @include size(10px);
+    background: #fff;
+    border-radius: 999px;
+  }
+
+  &__filter-group input[type="radio"]:checked + label::before {
+    border-color: $primary-color;
+  }
+
+  &__filter-group input[type="radio"]:checked + label::after {
+    background: $primary-color;
+  }
+
+  &__filter-group input[type="checkbox"] + label::before {
+    top: 8px;
+    left: 4px;
+    @include size(12px);
+    border: 1px solid #000;
+  }
+
+  &__filter-group input[type="checkbox"] + label::after {
+    top: 11px;
+    left: 6px;
+    @include size(8px, 3px);
+    // background: #fff;
+    rotate: -50deg;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+  }
+
+  &__filter-group input[type="checkbox"]:checked + label::before {
+    border-color: $primary-color;
+    background: $primary-color;
+  }
+
+  &__filter-group input[type="checkbox"]:checked + label::after {
+    background: $primary-color;
+  }
+
+  &__filter-action {
+    display: block;
+    margin-top: 6px;
+    color: #dedede;
+    transition: 0.2s ease-in-out;
+    text-align: center;
+  }
+
+  &__filter-action.hidden {
+    display: none;
+  }
+
+  &__filter-action:hover {
+    color: $blue-primary-btn-color;
+  }
+
+  &__filter-buttons {
+    @include flex(space-between, center);
+    gap: 0 14px;
+    margin-top: 24px;
+  }
+
+  &__filter-button {
+    width: 50%;
+  }
+
+  &__filter-button.filter {
+    background: $blue-primary-btn-color;
+    border-color: $blue-primary-btn-color;
+  }
+
+  &__filter-button.filter:hover {
+    background: #fff;
+    color: $blue-primary-btn-color;
+  }
+
+  &__filter-button.reset {
+    background: $red-secondary-btn-color;
+    border-color: $red-secondary-btn-color;
+  }
+
+  &__filter-button.reset:hover {
+    background: #fff;
+    color: $red-secondary-btn-color;
+  }
+
+  &__list,
+  &__no-foods {
+    width: calc(75% - $grid-gutter-width / 2);
+    margin-left: $grid-gutter-width;
+    padding: 0;
+  }
+
+  &__no-foods {
+    position: relative;
+    @include flexCenter();
+  }
+
+  &__no-foods p {
+    font-size: 5rem;
+    font-weight: 700;
+    font-style: italic;
+    color: #dedede;
+  }
+
+  &__no-foods i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    font-size: 28rem;
+    color: #dedede;
+  }
+
+  &__list {
+    @include flex(stretch, center);
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  &__item {
+    width: calc(100% / 3 - 10px);
+    padding: 8px 10px;
+    border: 4px solid #fff;
+    // margin-left: -15px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+  }
+
+  &__item:hover {
+    border-color: $primary-color;
+    box-shadow: 0px 0px 2px 2px rgba(4, 71, 133, 0.2);
+  }
+
+  &__item-image {
+    @include size(100%, 180px);
+    border-radius: 12px 12px 0 0;
+  }
+
+  &__item-info {
+    padding: 10px 0 0;
+  }
+
+  &__item-info p {
+    text-align: center;
+  }
+
+  &__item-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding: 2px 0;
+  }
+
+  &__item-category {
+    color: #aeaeae;
+    margin: 8px 0 10px;
+  }
+
+  &__item-price {
+    font-size: 1.8rem;
+    color: #ffd000;
+    margin: 4px 0 6px;
+    font-weight: 600;
+  }
+
+  &__item-buttons {
+    @include flex(space-between, center);
+    gap: 0 12px;
+    margin-top: 16px;
+  }
+
+  &__item-button {
+    @include size(calc(100% / 2 - 6px), 35px);
+    background: #dedede;
+    border-color: #dedede;
+    font-size: 1.4rem;
+  }
+
+  &__item:has(&__item-button) form {
+    @include size(calc(100% / 2 - 6px), 35px);
+  }
+
+  &__item form &__item-button {
+    width: 100%;
+  }
+
+  &__item:hover &__item-button {
+    background: $primary-color;
+    border-color: $primary-color;
+  }
+
+  &__item:hover &__item-button:hover {
+    background: #fff;
+  }
+
+  &__pagination {
+    position: unset;
+  }
+}

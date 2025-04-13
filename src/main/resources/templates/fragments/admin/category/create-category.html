@@ -1,0 +1,56 @@
+<div class="main__content" th:fragment="content">
+  <div class="main__filter">
+    <a th:href="@{/admin/categories}" class="comeback">
+      <i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Quay lại
+    </a>
+    <h2 class="title">Thêm loại món ăn</h2>
+  </div>
+  <div class="main__crud category">
+    <form
+      method="post"
+      th:action="@{/admin/categories/create}"
+      th:object="${category}"
+      id="add-category-form"
+      class="main-crud__form"
+      autocomplete="off"
+    >
+      <div class="main-crud__row">
+        <div class="main-crud__form-group full">
+          <label>Mã loại món ăn</label>
+          <input
+            type="text"
+            id="add-category-id"
+            class="text-center"
+            readonly
+          />
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group full">
+          <label for="add-category-name">Tên loại món ăn</label>
+          <input
+            th:field="*{name}"
+            type="text"
+            id="add-category-name"
+            placeholder="Nhập Tên loại món ăn"
+            autofocus
+          />
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group full">
+          <label for="add-category-status">Trạng thái</label>
+          <i class="fa-solid fa-chevron-down icon"></i>
+          <select th:field="*{status}" id="add-category-status">
+            <option value="" selected>Chọn Trạng thái</option>
+            <option value="true">Hoạt động</option>
+            <option value="false">Tạm dừng</option>
+          </select>
+        </div>
+      </div>
+      <div class="main-crud__buttons">
+        <button type="submit" class="btn add">Xác nhận</button>
+      </div>
+    </form>
+  </div>
+</div>

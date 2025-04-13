@@ -1,0 +1,42 @@
+@use "../abstracts/mixins" as *;
+
+.error {
+  &-icon {
+    color: red;
+    opacity: 0;
+  }
+
+  &-text {
+    position: absolute;
+    left: 0;
+    bottom: -16px;
+    font-size: 1.4rem;
+    color: red;
+    transition: 0.2s ease-in-out;
+    // display: block;
+    opacity: 0;
+  }
+}
+
+/* <===== Error Page =====> */
+.error-page {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+
+  & {
+    color: #dedede;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 24rem;
+    font-weight: 700;
+  }
+
+  &__desc {
+    font-size: 5rem;
+    font-style: italic;
+  }
+}

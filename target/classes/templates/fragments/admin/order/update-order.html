@@ -1,0 +1,192 @@
+<div class="main__content" th:fragment="content">
+  <div class="main__filter">
+    <a th:href="@{/admin/orders}" class="comeback">
+      <i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Quay lại
+    </a>
+    <h2 class="title">Cập nhật đơn hàng</h2>
+  </div>
+  <div class="main__crud height-auto">
+    <form
+      method="post"
+      th:action="@{'/admin/orders/update/' + ${order.id}}"
+      th:object="${order}"
+      id="update-order-form"
+      class="main-crud__form"
+    >
+      <div class="main-crud__row">
+        <div class="main-crud__form-group half">
+          <label>Mã đơn hàng</label>
+          <input
+            type="text"
+            id="update-order-id"
+            class="text-center"
+            readonly
+            th:value="${order.id}"
+          />
+        </div>
+        <div class="main-crud__form-group half">
+          <label>Thời gian tạo đơn</label>
+          <input
+            type="text"
+            id="update-order-date-create"
+            class="text-center"
+            readonly
+            th:value="${#strings.replace(order.timeCreate, 'T', ' ')}"
+          />
+        </div>
+        <div class="main-crud__form-group full">
+          <label>Nhân viên xác nhận</label>
+          <input
+            type="text"
+            id="update-order-employee"
+            readonly
+            th:value="${order.employee != null ? ('#' + order.employee.id + ' - ' + order.employee.fullname) : ''}"
+          />
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group">
+          <label>Phương thức thanh toán</label>
+          <input
+            type="text"
+            id="update-order-pay-method"
+            readonly
+            th:value="${order.payMethod}"
+          />
+        </div>
+        <div class="main-crud__form-group full">
+          <label>Địa chỉ giao hàng</label>
+          <input
+            type="text"
+            id="update-order-address-to-ship"
+            readonly
+            th:value="${order.receiverAddress}"
+          />
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group">
+          <label>Trạng thái</label>
+          <select th:field="*{status}" disabled>
+            <option value="0">Đang chờ xác nhận</option>
+            <option value="1">Đã huỷ đơn</option>
+            <option value="2">Đã xác nhận</option>
+            <option value="3">Đã giao hàng</option>
+          </select>
+        </div>
+        <div class="main-crud__form-group full">
+          <label>Tổng thanh toán (VNĐ)</label>
+          <input
+            type="text"
+            id="update-order-total-price"
+            readonly
+            th:value="${order.totalPrice}"
+          />
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group half">
+          <label>Mã khách hàng</label>
+          <input
+            type="text"
+            id="update-order-customer-id"
+            class="text-center"
+            readonly
+            th:value="${order.customer.id}"
+          />
+        </div>
+        <div class="main-crud__form-group half">
+          <label>Số điện thoại</label>
+          <input
+            type="text"
+            id="update-order-customer-phone"
+            readonly
+            th:value="${order.receiverPhone}"
+          />
+        </div>
+        <div class="main-crud__form-group">
+          <label>Họ và tên</label>
+          <input
+            type="text"
+            id="update-order-customer-fullname"
+            readonly
+            th:value="${order.receiverFullname}"
+          />
+        </div>
+        <div class="main-crud__form-group">
+          <label>Email</label>
+          <input
+            type="text"
+            id="update-order-customer-email"
+            readonly
+            th:value="${order.customer.email}"
+          />
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group full">
+          <label style="color: #000">Chi tiết đơn hàng</label>
+          <table id="update-order-table">
+            <thead>
+              <tr>
+                <th width="10%">Mã món ăn</th>
+                <th width="38%">Tên món ăn</th>
+                <th width="10%">Số lượng</th>
+                <th width="16%">Đơn giá (VNĐ)</th>
+                <th width="26%">Thành tiền (VNĐ)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="orderDetail : ${order.orderDetails}">
+                <td th:text="${orderDetail.food.id}"></td>
+                <td th:text="${orderDetail.food.name}" class="left"></td>
+                <td th:text="${orderDetail.quantity}"></td>
+                <td th:text="${orderDetail.price}" class="price"></td>
+                <td
+                  th:text="${orderDetail.price * orderDetail.quantity}"
+                  class="right price"
+                ></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div
+        th:if="${order.status != 3 && order.status != 1}"
+        id="update-order-buttons"
+        class="main-crud__buttons order"
+      >
+        <button
+          th:if="${order.status == 2}"
+          type="submit"
+          name="action"
+          value="ship"
+          id="update-order-ship-button"
+          class="ship-status btn"
+        >
+          Giao hàng
+        </button>
+        <button
+          th:if="${order.status == 0}"
+          type="submit"
+          name="action"
+          value="confirm"
+          id="update-order-confirm-button"
+          class="confirm-status btn"
+        >
+          Xác nhận
+        </button>
+        <button
+          th:if="${order.status == 0}"
+          type="submit"
+          name="action"
+          value="cancel"
+          id="update-order-cancel-button"
+          class="cancel-status btn"
+        >
+          Huỷ đơn
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

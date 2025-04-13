@@ -1,0 +1,176 @@
+<div class="main__content" th:fragment="content">
+  <div class="main__filter">
+    <a th:href="@{/admin/users}" class="comeback">
+      <i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Quay lại
+    </a>
+    <h2 class="title">Cập nhật người dùng</h2>
+  </div>
+  <div class="main__crud height-auto">
+    <form
+      method="post"
+      th:action="@{'/admin/users/update/' + ${user.id}}"
+      th:object="${user}"
+      id="update-user-form"
+      class="main-crud__form"
+      enctype="multipart/form-data"
+      autocomplete="off"
+    >
+      <div class="main-crud__row">
+        <div class="main-crud__form-group image">
+          <label for="update-user-image">Hình ảnh</label>
+          <img
+            th:src="${user.image} != null ? ('/assets/images/users/' + ${user.image}) : ('/assets/images/others/no-image.png')"
+            th:alt="'user-' + ${user.id} + '-image'"
+          />
+          <input
+            name="file-image"
+            type="file"
+            id="update-user-image"
+            accept="image/*"
+          />
+        </div>
+        <div class="main-crud__form-group">
+          <label for="update-user-id">Mã người dùng<span>*</span></label>
+          <input
+            th:field="*{id}"
+            type="text"
+            id="update-user-id"
+            class="text-center"
+            readonly
+          />
+        </div>
+        <div class="main-crud__form-group">
+          <label for="update-user-date_create">
+            Ngày tạo tài khoản<span>*</span>
+          </label>
+          <i class="fa-solid fa-calendar-days"></i>
+          <input
+            th:field="*{timeCreate}"
+            type="datetime"
+            id="update-user-date_create"
+            disabled
+          />
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group">
+          <label for="update-user-username">Tên tài khoản<span>*</span></label>
+          <input
+            th:field="*{username}"
+            type="text"
+            id="update-user-username"
+            placeholder="Nhập Tên tài khoản"
+            readonly
+          />
+        </div>
+        <div class="main-crud__form-group">
+          <label for="update-user-password">Mật khẩu<span>*</span></label>
+          <input
+            th:field="*{password}"
+            type="password"
+            id="update-user-password"
+            placeholder="Mật khẩu đã bị ẩn đi"
+            readonly
+          />
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group">
+          <label for="update-user-role">Phân quyền<span>*</span></label>
+          <i class="fa-solid fa-chevron-down"></i>
+          <select th:field="*{role}" id="update-user-role">
+            <option value="" selected>Chọn Phân quyền</option>
+            <option
+              th:each="role : ${roles}"
+              th:value="${role.id}"
+              th:text="${role.name}"
+            ></option>
+          </select>
+        </div>
+        <div class="main-crud__form-group">
+          <label for="update-user-status">Trạng thái<span>*</span></label>
+          <i class="fa-solid fa-chevron-down"></i>
+          <select th:field="*{status}" id="update-user-status" disabled>
+            <option value="true">Hoạt động</option>
+            <option value="false">Tạm dừng</option>
+          </select>
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group">
+          <label for="update-user-fullname">Họ và tên<span>*</span></label>
+          <input
+            th:field="*{fullname}"
+            type="text"
+            id="update-user-fullname"
+            placeholder="Nhập Họ và tên"
+            autofocus
+          />
+        </div>
+        <div class="main-crud__form-group half">
+          <label for="update-user-birthday">Ngày sinh</label>
+          <i class="fa-solid fa-calendar-days"></i>
+          <input
+            th:field="*{birthday}"
+            th:classappend="${user.birthday != null ? 'hasValidDate' : ''}"
+            type="date"
+            id="update-user-birthday"
+          />
+        </div>
+        <div class="main-crud__form-group half">
+          <label for="update-user-gender">Giới tính</label>
+          <i class="fa-solid fa-chevron-down"></i>
+          <select th:field="*{gender}" id="update-user-gender">
+            <option value="" selected>Chọn Giới tính</option>
+            <option value="false">Nữ</option>
+            <option value="true">Nam</option>
+          </select>
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group">
+          <label for="update-user-phone">Số điện thoại<span>*</span></label>
+          <input
+            th:field="*{phone}"
+            type="text"
+            id="update-user-phone"
+            placeholder="Nhập Số điện thoại"
+          />
+        </div>
+        <div class="main-crud__form-group">
+          <label for="update-user-email">Email</label>
+          <input
+            th:field="*{email}"
+            type="text"
+            id="update-user-email"
+            placeholder="Nhập Email"
+          />
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group user full">
+          <label for="update-user-address">Địa chỉ<span>*</span></label>
+          <input
+            th:field="*{address}"
+            type="text"
+            id="update-user-address"
+            placeholder="Nhập Địa chỉ"
+          />
+          <button type="button" id="create-address" class="btn address">
+            Tạo
+          </button>
+        </div>
+      </div>
+      <div class="main-crud__buttons">
+        <button type="submit" id="update-user-button" class="btn update">
+          Xác nhận
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

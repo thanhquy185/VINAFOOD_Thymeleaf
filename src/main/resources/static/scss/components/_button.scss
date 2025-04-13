@@ -1,0 +1,49 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/colors" as *;
+@use "../abstracts/mixins" as *;
+
+/* <===== Button =====> */
+.btn {
+  @include size(120px, $admin-filter-height);
+  background: $primary-color;
+  border: 3px solid $primary-color;
+  border-radius: $admin-border-radius;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover,
+  &.active {
+    background: #fff;
+    color: $primary-color;
+  }
+
+  &:disabled {
+    background: #dedede !important;
+    border-color: #dedede !important;
+    cursor: not-allowed !important;
+  }
+
+  &:disabled.red {
+    background: $red-secondary-btn-color !important;
+    border-color: $red-secondary-btn-color !important;
+  }
+
+  &:disabled:hover {
+    color: #fff !important;
+  }
+}
+
+.comeback {
+  height: $admin-filter-height;
+  color: #777;
+  font-size: 2rem;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    color: $primary-color;
+  }
+}

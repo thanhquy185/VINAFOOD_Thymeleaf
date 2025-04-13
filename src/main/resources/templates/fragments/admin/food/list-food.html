@@ -1,0 +1,207 @@
+<div class="main__content" th:fragment="content">
+  <div class="main__filter">
+    <div class="main__form-group form-group filter">
+      <label for="find-input" class="main__form-group-icon">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </label>
+      <input
+        type="text"
+        id="find-input"
+        class="main__form-group-input"
+        placeholder="Tìm kiếm thông tin"
+        autocomplete="off"
+      />
+    </div>
+    <div class="main__form-group form-group filter select">
+      <label for="sort-select" class="main__form-group-icon">
+        <i class="fa-solid fa-sort"></i>
+      </label>
+      <input
+        type="text"
+        id="sort-select"
+        class="main__form-group-select"
+        placeholder="Sắp xếp thông tin"
+        readonly
+      />
+      <ul class="main__form-group-list">
+        <li class="main__form-group-item selected">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Sắp xếp
+          thông tin
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;ID tăng dần
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;ID giảm dần
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Tên món ăn
+          tăng dần
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Tên món ăn
+          giảm dần
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Tồn kho tăng
+          dần
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Tồn kho giảm
+          dần
+        </li>
+      </ul>
+    </div>
+    <div class="main__form-group form-group filter select">
+      <label for="category-select" class="main__form-group-icon">
+        <i class="fa-solid fa-bell-concierge"></i>
+      </label>
+      <input
+        type="text"
+        id="category-select"
+        class="main__form-group-select"
+        placeholder="Chọn Loại món ăn"
+        readonly
+      />
+      <ul class="main__form-group-list">
+        <li class="main__form-group-item selected">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Chọn Loại
+          món ăn
+        </li>
+        <li class="main__form-group-item" th:each="category : ${categories}">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;
+          <span th:text="${category.name}"></span>
+        </li>
+      </ul>
+    </div>
+    <div class="main__form-group form-group filter select">
+      <label for="status-select" class="main__form-group-icon">
+        <i class="fa-solid fa-signal"></i>
+      </label>
+      <input
+        type="text"
+        id="status-select"
+        class="main__form-group-select"
+        placeholder="Chọn Trạng thái"
+        readonly
+      />
+      <ul class="main__form-group-list">
+        <li class="main__form-group-item selected">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Chọn Trạng
+          thái
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Đang bán
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Dừng bán
+        </li>
+      </ul>
+    </div>
+    <div class="main__form-group buttons">
+      <button id="filter-button-food" class="btn filter">
+        <i class="fa-solid fa-filter"></i>&nbsp;Lọc
+      </button>
+      <a th:href="@{/admin/foods/create}" id="add-button-food" class="btn add">
+        <i class="fa-solid fa-plus"></i>&nbsp;Thêm
+      </a>
+    </div>
+  </div>
+  <div class="main__data">
+    <table class="main__table table data">
+      <thead>
+        <tr>
+          <th width="10%">ID</th>
+          <th width="18%">Hình ảnh</th>
+          <th width="30%">Tên món ăn</th>
+          <th width="12%">Loại món ăn</th>
+          <th width="10%">Tồn kho</th>
+          <th width="10%">Trạng thái</th>
+          <th width="10%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="food : ${foods}" class="food">
+          <td th:text="${food.id}"></td>
+          <td>
+            <img
+              th:src="@{${food.image != null ? '/assets/images/foods/' + food.image : '/assets/images/others/no-image.png'}}"
+              alt="food-${food.id}-image"
+            />
+          </td>
+          <td th:text="${food.name}" class="left"></td>
+          <td th:text="${food.category.name}"></td>
+          <td th:text="${food.inventory}"></td>
+          <td
+            th:text="${food.status ? 'Đang bán' : 'Dừng bán'}"
+            th:classappend="${food.status ? 'green' : 'red'}"
+          ></td>
+          <td>
+            <a th:href="@{'/admin/foods/detail/' + ${food.id}}">
+              <i class="fa-solid fa-circle-info"></i>
+            </a>
+            <a th:href="@{'/admin/foods/update/' + ${food.id}}">
+              <i class="fa-solid fa-pen-to-square update-button-food"></i>
+            </a>
+            <a th:href="@{'/admin/foods/lock/' + ${food.id}}">
+              <i
+                class="fa-solid"
+                th:classappend="${food.status ? 'fa-lock lock-button-food' : 'fa-unlock lock-button-food'}"
+              ></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="main__pagination pagination">
+      <!-- Nút Previous -->
+      <a
+        th:if="${currentPage > 1}"
+        th:href="@{'/admin/foods?page=' + ${currentPage - 1} + ${queryString != null ? queryString : ''}}"
+        class="pagination-button previous"
+      >
+        <i class="icon fa-solid fa-chevron-left"></i>
+      </a>
+      <!-- Trang đầu tiên -->
+      <a
+        th:if="${totalPages > 1}"
+        th:href="@{'/admin/foods?page=' + ${1} + ${queryString != null ? queryString : ''}}"
+        class="pagination-button"
+        th:classappend="${currentPage == 1 ? 'active' : ''}"
+      >
+        1
+      </a>
+      <!-- Dấu ... nếu currentPage > 4 -->
+      <span th:if="${currentPage > 4}">...</span>
+      <!-- Các trang lân cận currentPage -->
+      <a
+        th:each="i : ${#numbers.sequence(currentPage - 2, currentPage + 2)}"
+        th:if="${i > 1 && i < totalPages}"
+        th:href="@{'/admin/foods?page=' + ${i} + ${queryString != null ? queryString : ''}}"
+        class="pagination-button"
+        th:classappend="${i == currentPage ? 'active' : ''}"
+        th:text="${i}"
+      >
+      </a>
+      <!-- Dấu ... nếu currentPage < totalPages - 3 -->
+      <span th:if="${currentPage < totalPages - 3}">...</span>
+      <!-- Trang cuối cùng -->
+      <a
+        th:if="${totalPages > 1}"
+        th:href="@{'/admin/foods?page=' + ${totalPages} + ${queryString != null ? queryString : ''}}"
+        class="pagination-button"
+        th:classappend="${currentPage == totalPages ? 'active' : ''}"
+      >
+        [[${totalPages}]]
+      </a>
+      <!-- Nút Next -->
+      <a
+        th:if="${currentPage < totalPages}"
+        th:href="@{'/admin/foods?page=' + ${currentPage + 1} + ${queryString != null ? queryString : ''}}"
+        class="pagination-button next"
+      >
+        <i class="icon fa-solid fa-chevron-right"></i>
+      </a>
+    </div>
+  </div>
+</div>

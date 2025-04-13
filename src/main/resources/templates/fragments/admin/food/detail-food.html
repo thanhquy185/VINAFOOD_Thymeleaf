@@ -1,0 +1,111 @@
+<div class="main__content" th:fragment="content">
+  <div class="main__filter">
+    <a th:href="@{/admin/foods}" class="comeback">
+      <i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Quay lại
+    </a>
+    <h2 class="title">Chi tiết món ăn</h2>
+  </div>
+  <div class="main__crud food">
+    <form
+      id="detail-food-form"
+      th:action="@{'/admin/foods/detail' + ${id}}"
+      th:object="${food}"
+      class="main-crud__form"
+    >
+      <div class="main-crud__row">
+        <div class="main-crud__form-group image food">
+          <label for="detail-food-image">Hình ảnh</label>
+          <img
+            th:src="${food.image} != null ? ('/assets/images/foods/' + ${food.image}) : ('/assets/images/others/no-image.png')"
+            th:alt="'food-' + ${food.id} + '-image'"
+          />
+          <input
+            th:field="*{image}"
+            type="text"
+            id="detail-food-image"
+            accept="image/*"
+            readonly
+          />
+        </div>
+        <div class="main-crud__form-group">
+          <label>Mã món ăn<span>*</span></label>
+          <input
+            th:field="*{id}"
+            type="text"
+            id="detail-food-id"
+            class="text-center"
+            readonly
+          />
+        </div>
+        <div class="main-crud__form-group">
+          <label for="detail-food-name">Tên món ăn<span>*</span></label>
+          <input
+            th:field="*{name}"
+            type="text"
+            id="detail-food-name"
+            placeholder="Nhập Tên món ăn"
+            readonly
+          />
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group">
+          <label for="detail-food-category">Loại món ăn<span>*</span></label>
+          <i class="fa-solid fa-chevron-down icon"></i>
+          <select th:field="*{category}" id="detail-food-category" disabled>
+            <option
+              th:each="category : ${categories}"
+              th:value="${category.id}"
+              th:text="${category.name}"
+            ></option>
+          </select>
+        </div>
+        <div class="main-crud__form-group">
+          <label for="detail-food-price">Giá bán<span>*</span></label>
+          <input
+            th:field="*{price}"
+            type="text"
+            id="detail-food-price"
+            placeholder="Nhập Giá bán"
+            readonly
+          />
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group food">
+          <label for="detail-food-desc">Mô tả</label>
+          <textarea
+            th:field="*{description}"
+            id="detail-food-desc"
+            placeholder="Nhập Mô tả"
+            readonly
+          ></textarea>
+        </div>
+        <div class="main-crud__form-group">
+          <label for="detail-food-inventory">Tồn kho<span>*</span></label>
+          <input
+            th:field="*{inventory}"
+            type="text"
+            id="detail-food-inventory"
+            placeholder="Nhập Tồn kho"
+            readonly
+          />
+        </div>
+      </div>
+      <div class="main-crud__row">
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group"></div>
+        <div class="main-crud__form-group">
+          <label for="detail-food-status">Trạng thái<span>*</span></label>
+          <i class="fa-solid fa-chevron-down icon"></i>
+          <select th:field="*{status}" id="detail-food-status" disabled>
+            <option value="true">Đang bán</option>
+            <option value="false">Dừng bán</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

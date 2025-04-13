@@ -1,0 +1,98 @@
+<div class="main__content" th:fragment="content">
+  <div class="main__filter">
+    <div class="main__form-group form-group filter select">
+      <label for="type-select" class="main__form-group-icon">
+        <i class="fa-solid fa-sort"></i>
+      </label>
+      <input
+        type="text"
+        id="type-select"
+        class="main__form-group-select"
+        placeholder="Chọn Loại thống kê"
+        readonly
+      />
+      <ul class="main__form-group-list">
+        <li class="main__form-group-item selected">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Chọn Loại
+          thống kê
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Thống kê Lợi
+          nhuận
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Thống kê
+          Doanh thu
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Thống kê
+          Phiếu nhập
+        </li>
+      </ul>
+    </div>
+    <div class="main__form-group form-group filter select">
+      <label for="timeline-select" class="main__form-group-icon">
+        <i class="fa-solid fa-timeline"></i>
+      </label>
+      <input
+        type="text"
+        id="timeline-select"
+        class="main__form-group-select"
+        placeholder="Chọn Mốc thời gian"
+        readonly
+      />
+      <ul class="main__form-group-list">
+        <li class="main__form-group-item selected">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Chọn Mốc
+          thời gian
+        </li>
+      </ul>
+    </div>
+    <div class="main__form-group form-group filter select">
+      <label for="timeline-detail-select" class="main__form-group-icon">
+        <i class="fa-solid fa-clock"></i>
+      </label>
+      <input
+        type="text"
+        id="timeline-detail-select"
+        class="main__form-group-select"
+        placeholder="Chọn Thời gian cụ thể"
+        readonly
+      />
+      <ul class="main__form-group-list">
+        <li class="main__form-group-item selected">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Chọn Thời
+          gian cụ thể
+        </li>
+      </ul>
+    </div>
+    <div class="main__form-group">
+      <button id="see-button-dashboard_shop" class="btn filter">
+        <i class="fa-solid fa-eye"></i>&nbsp;Xem
+      </button>
+    </div>
+    <div class="main__form-group buttons">
+      <button
+        id="print-button-dashboard_shop"
+        class="btn add"
+        style="margin-left: auto; width: 52%"
+      >
+        <i class="fa-solid fa-print"></i>&nbsp;In phiếu
+      </button>
+    </div>
+  </div>
+  <div class="main__data">
+    <table class="main__table table dashboard">
+      <thead>
+        <tr>
+          <th width="100%">Thống kê cửa hàng</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+      <tfoot></tfoot>
+    </table>
+    <p class="main__total">
+      <strong>Viết bằng chữ: </strong><span>Đang cập nhật</span>
+    </p>
+  </div>
+</div>

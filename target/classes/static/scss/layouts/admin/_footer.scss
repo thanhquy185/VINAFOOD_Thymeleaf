@@ -1,0 +1,30 @@
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/colors" as *;
+@use "../../abstracts/mixins" as *;
+
+/* <===== Footer =====> */
+.footer {
+  @include flex(flex-end, flex-end);
+  @include size(calc(100% - $admin-sidebar-width - $admin-space * 3), 38px);
+  margin-top: $admin-space;
+  margin-left: calc($admin-sidebar-width + $admin-space * 2);
+  font-size: 1.6rem;
+
+  &__info {
+    font-size: 1.6rem;
+  }
+
+  &__info b {
+    color: $primary-color;
+    font-weight: 600;
+  }
+
+  &__image {
+    @include size(25px);
+  }
+
+  .sidebar.hide ~ & {
+    margin-left: calc($admin-sidebar-hidden-width + $admin-space * 2);
+    width: calc(100% - $admin-sidebar-hidden-width - $admin-space * 3);
+  }
+}

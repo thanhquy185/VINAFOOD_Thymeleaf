@@ -1,0 +1,11 @@
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/colors" as *;
+@use "../../abstracts/mixins" as *;
+
+.client-footer {
+  height: 200px;
+  background: $primary-color;
+  padding: 14px 0;
+  border-radius: $admin-border-radius $admin-border-radius 0 0;
+  margin-top: calc($grid-gutter-width * 2 + calc($grid-gutter-width / 2));
+}

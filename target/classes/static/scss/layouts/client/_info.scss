@@ -1,0 +1,179 @@
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/colors" as *;
+@use "../../abstracts/mixins" as *;
+
+.client-info {
+  &__form {
+    width: 100%;
+    background: #fff;
+    border-radius: 12px;
+  }
+
+  &__form {
+    margin: 0 auto;
+    padding: 24px 26px;
+  }
+
+  &__form-row {
+    @include flex(stretch, center);
+    flex-wrap: wrap;
+    gap: 0 24px;
+  }
+
+  &__form-row + &__form-row {
+    margin-top: 38px;
+  }
+
+  &__form-group {
+    position: relative;
+    width: calc(100% / 3 - 16px);
+  }
+
+  &__form-group.half {
+    width: calc(calc(100% / 3) / 2 - 20px);
+  }
+
+  &__form-group.full {
+    width: 100%;
+  }
+
+  &__form-group.address {
+    width: calc(calc(calc(100% / 3) * 2) - 6px);
+    position: relative;
+    left: calc(calc(100% / 3) + 6px);
+    // right: 0;
+  }
+
+  &__form-group :where(label, input, select) {
+    @include size(100%, 40px);
+    font-size: 1.8rem;
+  }
+
+  &__form-group :where(input, select) {
+    background: transparent;
+    padding: 0 10px;
+    border: 1px solid #dedede;
+    margin-top: 8px;
+    border-radius: 12px;
+    line-height: 40px;
+    transition: 0.2s ease-in-out;
+  }
+
+  &__form-group input::placeholder,
+  &__form-group select,
+  &__form-group i {
+    color: #dedede;
+    transition: 0.2s ease-in-out;
+  }
+
+  &__form-group i {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    font-size: 1.8rem;
+    line-height: 40px;
+    pointer-events: none;
+  }
+
+  &__form-group select:hover,
+  &__form-group select.changed {
+    border-color: #000;
+    box-shadow: 0px 0px 2px 4px rgba(4, 71, 133, 0.1);
+    color: #000;
+  }
+
+  &__form-group input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  &__form-group input[type="date"] {
+    border-color: #dedede;
+    color: #dedede;
+  }
+
+  &__form-group input[type="date"]:where(:hover, :focus, .hasValidDate),
+  &__form-group:has(i:hover) input[type="date"] {
+    border-color: #000;
+    color: #000;
+    box-shadow: 0px 0px 2px 4px rgba(4, 71, 133, 0.1);
+  }
+
+  &__form-group
+    input:not([type="date"]):where(:hover, :focus, :not(:placeholder-shown)),
+  &__form-group:has(i:hover) :where(input, select) {
+    border-color: #000;
+    box-shadow: 0px 0px 2px 4px rgba(4, 71, 133, 0.1);
+  }
+
+  &__form-group input:not([type="date"]):not(:placeholder-shown),
+  &__form-group input:not([type="date"]):hover::placeholder,
+  &__form-group i:hover,
+  &__form-group:has(i:hover) :where(input, select),
+  &__form-group:has(select:where(:hover, .changed)) i,
+  &__form-group:has(input[type="date"]:where(:hover, :focus, .hasValidDate)) i {
+    color: #000;
+  }
+
+  &__form-group input[type="file"] {
+    background: #dedede;
+    border-color: #dedede;
+    box-shadow: none;
+  }
+
+  &__form-group :is(input, textarea):read-only,
+  &__form-group select:is(:disabled) {
+    background: #dedede;
+    border: none;
+    color: #000;
+    box-shadow: none;
+  }
+
+  &__form-group.avatar label {
+    position: relative;
+    top: -24px;
+    left: 0;
+  }
+
+  &__form-group.avatar img {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    @include size(180px, 240px);
+  }
+
+  &__form-group input[type="file"] {
+    position: absolute;
+    top: 306px;
+    left: 0;
+  }
+
+  &__form-group input[type="date"]:invalid {
+    border-color: #dedede;
+  }
+
+  &__form-group.address button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    @include size(80px, 20px);
+    background: #2286e3;
+    border-color: #2286e3;
+    border-radius: 6px;
+    font-size: 1.2rem;
+  }
+
+  &__form-group.address button:hover {
+    background: #fff;
+    color: #2286e3;
+  }
+
+  &__form-row.button {
+    justify-content: center;
+    margin-top: 46px;
+  }
+  &__button {
+    width: 24%;
+  }
+}

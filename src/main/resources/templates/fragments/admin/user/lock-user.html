@@ -1,0 +1,39 @@
+<div class="main__content" th:fragment="content" th:object="${user}">
+  <div class="main__filter">
+    <a th:href="@{/admin/users}" class="comeback">
+      <i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Quay lại
+    </a>
+    <h2
+      th:text="${user.status} ? 'Khoá loại món ăn' : 'Mở khoá loại món ăn'"
+      class="title"
+    ></h2>
+  </div>
+  <div class="main__crud user lock">
+    <form
+      method="post"
+      th:action="@{'/admin/users/lock/' + *{id}}"
+      id="lock-user-form"
+      class="main-crud__form"
+    >
+      <div class="main-crud__icons">
+        <i
+          th:classappend="${user.status} ? ('fa-unlock') : ('fa-lock')"
+          class="fa-solid"
+        ></i>
+        <i class="fa-solid fa-arrow-right"></i>
+        <i
+          th:classappend="${user.status} ? 'fa-lock' : 'fa-unlock'"
+          class="fa-solid"
+        ></i>
+      </div>
+      <input hidden th:field="*{status}" id="update-user-status" readonly />
+      <p
+        th:text="${user.status} ? ('Bạn có muốn khoá đối tượng có mã ' + ${id} + '?') : ('Bạn có muốn mở khoá đối tượng có mã ' + ${id} + '?')"
+        class="main-crud__question"
+      ></p>
+      <div class="main-crud__buttons">
+        <button type="submit" class="btn lock">Đồng ý</button>
+      </div>
+    </form>
+  </div>
+</div>

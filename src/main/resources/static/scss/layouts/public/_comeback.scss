@@ -1,0 +1,16 @@
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/colors" as *;
+@use "../../abstracts/mixins" as *;
+
+#comeback-home-btn {
+  position: absolute;
+  top: 4%;
+  left: 4%;
+  color: #777;
+  font-size: 2.2rem;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    color: $primary-color;
+  }
+}

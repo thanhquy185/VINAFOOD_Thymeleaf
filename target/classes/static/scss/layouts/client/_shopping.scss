@@ -1,0 +1,224 @@
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/colors" as *;
+@use "../../abstracts/mixins" as *;
+
+.client-shopping {
+  &__shopping-cart,
+  &__order-filter,
+  &__order-history {
+    width: 100%;
+    background: $secondary-color;
+    border-radius: 12px;
+    margin: 0 auto;
+    padding: 24px 26px;
+  }
+
+  &__list-wrap {
+    max-height: 434px;
+    overflow-y: scroll;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 4px 6px;
+    border: 4px solid $primary-color;
+    border-radius: 6px;
+  }
+
+  &__item + &__item {
+    margin-top: 12px;
+  }
+
+  &__item-image {
+    @include size(18%, 120px);
+  }
+
+  &__item-info {
+    @include size(40%, 120px);
+    padding: 4px 16px;
+  }
+
+  &__item-name {
+    // padding: 2px 0;
+    font-size: 2.2rem;
+    font-weight: 600;
+  }
+
+  &__item-catepri {
+    // padding: 2px 0;
+    margin: 4px 0 6px;
+    color: #c7c7c7;
+    font-size: 1.8rem;
+  }
+
+  &__item-desc {
+    // padding: 2px 0;
+    color: #777;
+    font-size: 1.8rem;
+    font-style: italic;
+  }
+
+  &__item-form {
+    @include flex(space-between, center);
+    width: 42%;
+  }
+
+  &__item-quantity-wrap,
+  &__item-price-wrap,
+  &__item-remove-wrap {
+    @include flexCenter();
+    width: 35%;
+  }
+
+  &__item-remove-wrap {
+    width: 30%;
+  }
+
+  &__item-button {
+    @include size(45px);
+    font-size: 2.2rem;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  &__item-button.remove {
+    margin-left: auto;
+    margin-right: 20px;
+    background: $red-secondary-btn-color;
+    border-color: $red-secondary-btn-color;
+  }
+
+  &__item-button.remove:hover {
+    background: #fff;
+    color: $red-secondary-btn-color;
+  }
+
+  &__item-quantity {
+    @include size(calc(100% - 90px), 45px);
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  &__item-price {
+    width: 100%;
+    font-size: 2rem;
+    text-align: right;
+  }
+
+  &__total {
+    margin-top: 12px;
+    font-size: 2rem;
+    text-align: right;
+  }
+  &__total b {
+    font-size: 2.4rem;
+    font-weight: 700;
+  }
+
+  &__buttons {
+    @include flex(flex-end, center);
+    margin-top: 30px;
+    gap: 24px;
+  }
+
+  &__button {
+    @include size(20%, 44px);
+    font-size: 1.8rem;
+  }
+
+  &__buttons:has(form) form {
+    @include size(20%, 44px);
+  }
+
+  &__buttons:has(form) form &__button {
+    width: 100%;
+  }
+
+  &__no-orders {
+    width: 100%;
+  }
+  &__no-orders p {
+    color: #dedede;
+    font-size: 4rem;
+    font-weight: 700;
+    font-style: italic;
+    text-align: center;
+  }
+
+  &__orders-warp {
+    max-height: 244px;
+    overflow-y: scroll;
+  }
+
+  &__order {
+    display: flex;
+    // align-items: center;
+    padding: 10px 12px;
+    border: 4px solid $primary-color;
+    border-radius: 6px;
+  }
+
+  &__order + &__order {
+    margin-top: 16px;
+  }
+
+  &__order-info {
+    width: 36%;
+  }
+
+  &__order-info p {
+    font-size: 1.8rem;
+  }
+
+  &__order-info p:not(:first-of-type) {
+    margin-top: 6px;
+  }
+
+  &__order-info b {
+    font-weight: 600;
+  }
+
+  &__order-status {
+    align-self: center;
+    width: 20%;
+    padding: 8px;
+    background: $ternary-color;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &__order-status.purple {
+    background: $purple-primary-btn-color;
+  }
+
+  &__order-status.green {
+    background: $green-secondary-btn-color;
+  }
+
+  &__order-status.red {
+    background: $red-secondary-btn-color;
+  }
+
+  &__order-buttons {
+    @include flexCenter();
+    gap: 0 4px;
+    width: 8%;
+  }
+
+  &__order-button {
+    color: $blue-primary-btn-color;
+    font-size: 2.2rem;
+    cursor: pointer;
+  }
+
+  &__order-button.red {
+    color: $red-secondary-btn-color;
+  }
+
+  &__order-button.hidden {
+    display: none;
+  }
+}

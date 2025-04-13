@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Styles CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <sidebar id="admin-sidebar" class="sidebar col-2">
+      <!-- Brand -->
+      <a href="#" class="sidebar__brand">
+        <i class="sidebar__brand-icon fa-solid fa-shop"></i>
+        <strong class="sidebar__brand-name">FOOD SHOP</strong>
+      </a>
+      <!-- Menu -->
+      <ul class="sidebar__menu">
+        <li class="sidebar__item">
+          <a
+            href="/profit_dashboard"
+            class="sidebar__action"
+            data-main-content="profit_dashboard"
+          >
+            <i class="sidebar__action-icon fa-solid fa-dollar-sign"></i>
+            <span class="sidebar__action-text">Thống kê lợi nhuận</span>
+          </a>
+        </li>
+        <li class="sidebar__item active">
+          <a
+            href="#"
+            class="sidebar__action"
+            data-main-content="revenue_dashboard"
+          >
+            <i class="sidebar__action-icon fa-solid fa-money-bill-trend-up"></i>
+            <span class="sidebar__action-text">Thống kê doanh thu</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a
+            href="#"
+            class="sidebar__action"
+            data-main-content="input_ticket_dashboard"
+          >
+            <i class="sidebar__action-icon fa-solid fa-file-invoice-dollar"></i>
+            <span class="sidebar__action-text">Thống kê phiếu nhập</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a
+            href="#"
+            class="sidebar__action"
+            data-main-content="order_dashboard"
+          >
+            <i class="sidebar__action-icon fa-solid fa-hand-holding-dollar"></i>
+            <span class="sidebar__action-text">Thống kê đơn hàng</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a href="#" class="sidebar__action" data-main-content="order">
+            <i class="sidebar__action-icon fa-solid fa-receipt"></i>
+            <span class="sidebar__action-text">Đơn hàng</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a href="#" class="sidebar__action" data-main-content="account">
+            <i class="sidebar__action-icon fa-solid fa-user"></i>
+            <span class="sidebar__action-text">Người dùng</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a href="#" class="sidebar__action" data-main-content="food">
+            <i class="sidebar__action-icon fa-solid fa-utensils"></i>
+            <span class="sidebar__action-text">Món ăn</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a href="#" class="sidebar__action" data-main-content="category">
+            <i class="sidebar__action-icon fa-solid fa-font-awesome"></i>
+            <span class="sidebar__action-text">Loại món ăn</span>
+          </a>
+        </li>
+      </ul>
+    </sidebar>
+
+    <!-- Navbar -->
+    <nav class="nav col-10">
+      <div class="nav__left">
+        <a id="show-admin-sidebar" class="nav__action">
+          <i class="nav__action-icon fa-solid fa-bars"></i>
+        </a>
+      </div>
+      <div class="nav__right">
+        <b class="nav__name">Trần Thanh Quy</b>
+        <a href="#!" class="nav__action">
+          <img
+            src="/assets/images/vietnam.png"
+            alt="vietnam"
+            class="nav__action-image"
+          />
+        </a>
+        <a class="nav__action">
+          <i class="nav__action-icon fa-regular fa-lightbulb"></i>
+        </a>
+        <a class="nav__action">
+          <i class="nav__action-icon fa-solid fa-gear"></i>
+        </a>
+        <a class="nav__action">
+          <i class="nav__action-icon fa-solid fa-power-off"></i>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Main -->
+    <main class="main">
+      <!-- Content -->
+      <div class="main__content" id="main-content">
+        <div class="main__filter">
+          <div class="main__form-group form-group filter">
+            <label for="find" class="main__form-group-icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </label>
+            <input
+              type="text"
+              id="find"
+              class="main__form-group-input"
+              placeholder="Tìm kiếm"
+            />
+          </div>
+          <div class="main__form-group form-group filter">
+            <label for="find" class="main__form-group-icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </label>
+            <input
+              type="text"
+              id="find"
+              class="main__form-group-input"
+              placeholder="Tìm kiếm"
+            />
+          </div>
+          <div class="main__form-group form-group filter">
+            <label for="find" class="main__form-group-icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </label>
+            <input
+              type="text"
+              id="find"
+              class="main__form-group-input"
+              placeholder="Tìm kiếm"
+            />
+          </div>
+          <div class="main__form-group form-group filter">
+            <label for="find" class="main__form-group-icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </label>
+            <input
+              type="text"
+              id="find"
+              class="main__form-group-input"
+              placeholder="Tìm kiếm"
+            />
+          </div>
+          <button class="btn main__add">
+            <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Thêm
+          </button>
+        </div>
+        <div class="main__data">
+          <table class="main__table table data">
+            <thead>
+              <tr>
+                <th width="10%">ID</th>
+                <th width="34%">Họ và tên</th>
+                <th width="14%">Số điện thoại</th>
+                <th width="14%">Phân quyền</th>
+                <th width="14%">Trạng thái</th>
+                <th width="14%"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td class="left">Trần Thanh Quy</td>
+                <td>1234567890</td>
+                <td>Quản lý</td>
+                <td class="active">Hoạt động</td>
+                <td>
+                  <i class="fa-solid fa-circle-info"> </i>
+                  <i class="fa-solid fa-pen-to-square"> </i>
+                  <i class="fa-solid fa-lock"></i>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td class="left">Trần Thanh SASFI</td>
+                <td>1234567890</td>
+                <td>Nhân viên</td>
+                <td class="stop">Tạm dừng</td>
+                <td>
+                  <i class="fa-solid fa-circle-info"> </i>
+                  <i class="fa-solid fa-pen-to-square"> </i>
+                  <i class="fa-solid fa-lock"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="main__pagination">
+            <button class="main__pagination-button previous">
+              <i class="icon fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="main__pagination-button">1</button>
+            <button class="main__pagination-button active">2</button>
+            <button class="main__pagination-button">3</button>
+            <button class="main__pagination-button">...</button>
+            <button class="main__pagination-button">997</button>
+            <button class="main__pagination-button">998</button>
+            <button class="main__pagination-button">999</button>
+            <button class="main__pagination-button next">
+              <i class="icon fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p class="footer__info">Được xây dựng bởi <b>Trần Thanh Quy</b></p>
+      &nbsp;
+      <img
+        src="/assets/images/coding.png"
+        alt="footer-icon"
+        class="footer__image"
+      />
+    </footer>
+
+    <!-- Javascript -->
+    <!-- <script type="module" src="admin/js/changeMainContent.js"></script> -->
+    <script type="module" src="/js/admin/showSidebar.js"></script>
+  </body>
+</html>

@@ -1,0 +1,167 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/colors" as *;
+@use "../abstracts/mixins" as *;
+
+.ticket {
+  &__header {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    @include size(100px);
+    object-fit: cover;
+    margin-right: 24px;
+  }
+
+  &__contact {
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+
+  &__contact p:not(:first-of-type) {
+    margin-top: 4px;
+  }
+
+  &__contact p b {
+    color: $primary-color;
+  }
+
+  &__body {
+    margin-top: 24px;
+  }
+
+  &__title {
+    font-size: 2.8rem;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  & p {
+    font-size: 1.8rem;
+  }
+
+  &__date {
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  &__info {
+    margin-top: 8px;
+  }
+
+  &__table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 24px;
+    font-size: 0.9em;
+    font-family: sans-serif;
+  }
+
+  &__table th {
+    /* background-color: #303234; */
+    background: $primary-color;
+    color: #ffffff;
+    font-weight: bold;
+  }
+
+  &__table th,
+  &__table td {
+    height: 35px;
+    padding: 4px 6px;
+    // font-size: 1.7rem;
+    line-height: 35px;
+    text-align: center;
+  }
+
+  &__table tr:nth-of-type(even) {
+    background: #f7f8f9;
+  }
+
+  &__table tfoot td:first-of-type {
+    background: #3597f2;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  &__table tfoot tr {
+    border-bottom: 4px solid $primary-color;
+  }
+
+  &__table td.left {
+    text-align: left;
+  }
+
+  &__table td.right {
+    text-align: right;
+  }
+
+  &__total {
+    margin-top: 6px;
+    // font-size: 1.6rem;
+    text-align: right;
+  }
+
+  &__total span {
+    font-style: italic;
+  }
+
+  &__total strong {
+    font-weight: bold;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+  }
+
+  &__customer {
+    display: flex;
+    flex-direction: column;
+    gap: 6px 0;
+    text-align: center;
+  }
+
+  &__print-btn {
+    @include size(160px, 30px);
+    background: #699f4c;
+    border: 2px solid #699f4c;
+    margin: 32px 0 0 50%;
+    transform: translateX(-50%);
+    border-radius: 4px;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+  }
+
+  &__print-btn:hover {
+    background: #fff;
+    color: #699f4c;
+  }
+
+  &__body:where(.order, .input_ticket) &__info {
+    font-size: 1.7rem;
+  }
+
+  &__body:where(.order, .input_ticket) &__date {
+    margin-bottom: 24px;
+  }
+
+  &__body:where(.order, .input_ticket) &__table {
+    margin-top: 4px;
+  }
+
+  &__footer:where(.order, .input_ticket) {
+    justify-content: space-around;
+  }
+
+  &__info b,
+  &__footer b {
+    font-weight: bold;
+  }
+}

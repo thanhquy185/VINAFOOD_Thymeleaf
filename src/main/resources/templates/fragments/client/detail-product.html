@@ -1,0 +1,55 @@
+<div class="container" th:fragment="content">
+  <div class="row client-main__header">
+    <a th:href="@{/client/product}" class="comeback">
+      <i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Quay lại Trang chủ
+    </a>
+    <h2 class="client-product__title client-main__title">Chi tiết món ăn</h2>
+  </div>
+  <div th:object="${food}" class="client-detail-product">
+    <div class="client-detail-product__media">
+      <img
+        th:src="${food.image} != null ? ('/assets/images/foods/' + ${food.image}) : ('/assets/images/others/no-image.png')"
+        th:alt="'food-' + ${food.id} + '-image'"
+        class="client-detail-product__image"
+      />
+    </div>
+    <div class="client-detail-product__info">
+      <h2 th:text="${food.name}" class="name"></h2>
+      <p
+        th:text="${food.category.name}"
+        class="category line-clamp"
+        style="--line-clamp: 1"
+      ></p>
+      <p th:text="${food.description}" class="description"></p>
+      <div class="client-detail-product__row">
+        <p th:text="${food.price}" class="client-detail-product__price"></p>
+        <form
+          method="post"
+          th:action="@{'/client/product/detail/add-to-cart/' + ${food.id}}"
+        >
+          <input
+            name="quantity"
+            type="number"
+            value="0"
+            class="client-detail-product__quantity"
+            th:readonly="${food.inventory <= 0}"
+          />
+          <button
+            th:if="${food.inventory > 0}"
+            type="submit"
+            class="client-detail-product__order btn"
+          >
+            <i class="fa-solid fa-cart-plus"></i>&nbsp;&nbsp;Thêm giỏ hàng
+          </button>
+          <button
+            th:if="${food.inventory <= 0}"
+            class="client-detail-product__order btn red"
+            disabled
+          >
+            <i class="fa-solid fa-ban"></i>&nbsp;&nbsp;Hết hàng
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

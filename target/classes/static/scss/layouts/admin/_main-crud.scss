@@ -1,0 +1,471 @@
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/colors" as *;
+@use "../../abstracts/mixins" as *;
+
+/* <===== Main-crud =====> */
+
+.main-crud,
+.dialog {
+  &__row {
+    @include flex(stretch, center);
+    gap: 0 24px;
+    width: 100%;
+    // margin-top: 24px;
+  }
+
+  &__row + &__row {
+    margin-top: 32px;
+  }
+
+  &__form-group {
+    position: relative;
+    width: 50%;
+  }
+
+  // &__form-group:where(.food, .order, .input_ticket) {
+  //   width: calc(100% / 3);
+  // }
+
+  &__form-group:where(.order, .input_ticket).half {
+    width: calc(calc(100% / 3) / 2 + 74px);
+  }
+
+  &__form-group.half {
+    width: calc(calc(100% / 3) / 2 + 74px);
+  }
+
+  &__form-group.full {
+    width: calc(100% + 38px);
+  }
+
+  &__form-group:where(.order, .input_ticket).full {
+    width: calc(calc(calc(100% / 3) * 2) + 24px);
+  }
+
+  &__form-group :is(input, textarea)::placeholder {
+    color: #eaeaea;
+    font-size: 1.7rem;
+    transition: 0.2s ease-in-out;
+  }
+
+  &__form-group :where(label, input, textarea, select) {
+    @include size(100%, 40px);
+    margin-top: 8px;
+    color: #eaeaea;
+    font-size: 1.7rem;
+    border-radius: 12px;
+    transition: 0.2s ease-in-out;
+    // pointer-events: painted;
+  }
+
+  &__form-group label {
+    position: relative;
+  }
+
+  &__form-group label span {
+    position: absolute;
+    top: -4px;
+    right: -14px;
+    color: #eaeaea;
+    font-size: 2.4rem;
+    transition: 0.2s ease-in-out;
+  }
+
+  &__form-group :where(input, textarea, select) {
+    padding-left: 12px;
+    border: 1px solid #eaeaea;
+    // pointer-events: auto;
+  }
+
+  &__form-group textarea {
+    height: 137px;
+    padding-top: 8px;
+    resize: none;
+  }
+
+  &__row:has(&__form-group textarea) {
+    align-items: flex-start;
+  }
+
+  &__form-group.food textarea {
+    position: absolute;
+    top: 17px;
+    left: 0;
+  }
+
+  &__form-group input.text-center {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  &__form-group select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  &__form-group i {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    height: 40px;
+    color: #eaeaea;
+    font-size: 1.6rem;
+    line-height: 40px;
+    transition: 0.2s ease-in-out;
+    pointer-events: none;
+  }
+
+  &__form-group .success-icon {
+    color: green;
+    opacity: 0;
+  }
+
+  &__form-group :is(input, textarea):read-only,
+  &__form-group select:is(:disabled) {
+    background: #eaeaea;
+    border: none;
+  }
+
+  &__form-group :is(input, textarea):focus::placeholder {
+    color: transparent;
+  }
+
+  &__form-group :is(input, textarea):is(:focus, :hover),
+  &__form-group :is(input, textarea):hover::placeholder,
+  &__form-group:has(input:not(:placeholder-shown)) input,
+  &__form-group:has(textarea:not(:placeholder-shown)) textarea,
+  &__form-group:has(:is(input, textarea):where(:focus, :hover, :read-only))
+    :is(label, i:not(.error-icon)),
+  &__form-group:has(:is(input, textarea):not(:placeholder-shown))
+    :is(label, i:not(.error-icon)),
+  &__form-group select:where(:hover, :disabled, .changed),
+  &__form-group:has(select:hover, select:disabled, select.changed)
+    :is(label, i:not(.error-icon)) {
+    color: #000;
+  }
+
+  &__form-group:has(:is(input, textarea):where(:focus, :hover)) label span,
+  &__form-group:has(:is(input, textarea):not(:placeholder-shown)) label span,
+  &__form-group:has(select:hover, select:disabled, select.changed) label span {
+    color: $red-secondary-btn-color;
+  }
+
+  &__form-group :is(input, textarea):is(:focus, :hover),
+  &__form-group:has(input:not(:placeholder-shown)) input,
+  &__form-group:has(textarea:not(:placeholder-shown)) textarea,
+  &__form-group select:is(:hover, .changed),
+  &__form-group:has(i:hover) :where(input, textarea, select) {
+    border-color: #000;
+  }
+
+  &__form-group button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    @include size(80px, 20px);
+    background: #2286e3;
+    border-color: #2286e3;
+    border-radius: calc($admin-border-radius * 0.5);
+    font-size: 1rem;
+    // line-height: 20px;
+  }
+
+  &__form-group button:is(:hover, .active) {
+    background: #fff;
+    color: #2286e3;
+  }
+
+  &__icons {
+    @include flex(space-between, center);
+    margin-top: 12px;
+  }
+
+  &__icons i {
+    @include size(120px);
+    font-size: 8.8rem;
+    line-height: 120px;
+    text-align: center;
+  }
+
+  &__icons i:nth-of-type(2) {
+    @include size(80px);
+    font-size: 5.4rem;
+    line-height: 80px;
+  }
+
+  &__question {
+    position: relative;
+    top: 16px;
+    color: $ternary-color;
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  &__buttons {
+    @include flexCenter();
+    gap: 24px;
+    margin-top: 34px;
+  }
+
+  &__buttons button,
+  &__close {
+    @include size(250px, 30px);
+    border-radius: 4px;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+
+  &__buttons button.add {
+    background: $green-primary-btn-color;
+    border: 2px solid $green-primary-btn-color;
+  }
+
+  &__buttons button.add:where(:hover, .active) {
+    background: #fff;
+    color: $green-primary-btn-color;
+  }
+
+  &__buttons button.update {
+    background: $yellow-primary-btn-color;
+    border: 2px solid $yellow-primary-btn-color;
+  }
+
+  &__buttons button.update:where(:hover, .active) {
+    background: #fff;
+    color: $yellow-primary-btn-color;
+  }
+
+  &__buttons button.lock {
+    background: $red-primary-btn-color;
+    border: 2px solid $red-primary-btn-color;
+  }
+
+  &__buttons button.lock:where(:hover, .active) {
+    background: #fff;
+    color: $red-primary-btn-color;
+  }
+
+  &__buttons button.yes {
+    width: 150px;
+    background: $green-secondary-btn-color;
+    border: 2px solid $green-secondary-btn-color;
+  }
+
+  &__buttons button.yes:where(:hover, .active) {
+    background: #fff;
+    color: $green-secondary-btn-color;
+  }
+
+  &__buttons button.no {
+    width: 150px;
+    background: $red-secondary-btn-color;
+    border: 2px solid $red-secondary-btn-color;
+  }
+
+  &__buttons button.no:where(:hover, .active) {
+    background: #fff;
+    color: $red-secondary-btn-color;
+  }
+
+  &__close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    @include size(35px);
+    background: #fff;
+    border-radius: 50%;
+    color: #000;
+    font-size: 1.8rem;
+    line-height: 35px;
+    transition: 0.1s ease-in-out;
+  }
+
+  &__close:hover {
+    color: $red-secondary-btn-color;
+    // background: #eaeaea;
+  }
+
+  &__form-group.image label {
+    position: absolute;
+    top: -40px;
+    left: 0;
+  }
+
+  &__form-group.image img {
+    @include size(210px, 280px);
+    position: absolute;
+    top: 74px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &__form-group.image input {
+    position: absolute;
+    top: 470px;
+    left: 0;
+    line-height: 40px;
+  }
+
+  &__form-group.image.food img {
+    @include size(300px, 220px);
+    top: 25px;
+  }
+
+  &__form-group.image.food input {
+    top: 275px;
+  }
+
+  &__row:has(&__form-group.description) {
+    margin: 0;
+  }
+
+  &__form-group.description {
+    position: absolute;
+    top: 418px;
+    left: 24px;
+    width: calc(100% / 3 - 32px);
+  }
+
+  &__form-group.description textarea {
+    height: 124px;
+    padding-top: 8px;
+    resize: "off";
+  }
+
+  &__form-group:has(input[type="date"]) :is(label, i) {
+    color: #eaeaea !important;
+  }
+
+  &__form-group input[type="date"] {
+    border-color: #eaeaea !important;
+    color: #eaeaea !important;
+  }
+
+  &__form-group input[type="date"]::-webkit-inner-spin-button,
+  &__form-group input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  &__form-group input[type="date"] {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+  }
+
+  &__form-group input[type="date"]:hover,
+  &__form-group input[type="date"]:focus,
+  &__form-group input[type="date"]:read-only,
+  &__form-group input[type="date"].hasValidDate {
+    border-color: #000 !important;
+    color: #000 !important;
+  }
+
+  &__form-group:has(input[type="date"]:hover) :is(label, i),
+  &__form-group:has(input[type="date"]:focus) :is(label, i),
+  &__form-group:has(input[type="date"]:read-only) :is(label, i),
+  &__form-group:has(input[type="date"].hasValidDate) :is(label, i) {
+    color: #000 !important;
+  }
+
+  &__form-group table {
+    table-layout: fixed;
+    width: 100%;
+    margin-top: 4px;
+  }
+  &__form-group table th {
+    /* background-color: #303234; */
+    background: #000;
+    border-bottom: none;
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  &__form-group table th,
+  &__form-group table td {
+    height: $admin-table-dialog-height;
+    padding: 4px 6px;
+    border: 1px solid #000;
+    font-size: 1.4rem;
+    line-height: $admin-table-dialog-height;
+    text-align: center;
+  }
+
+  &__form-group table td.left {
+    text-align: left;
+  }
+
+  &__form-group table td.right {
+    text-align: right;
+  }
+
+  &__buttons:is(.order, .input_ticket) {
+    justify-content: flex-end;
+  }
+
+  &__buttons:is(.order, .input_ticket) button {
+    width: 18%;
+    border: 2px solid #000;
+  }
+
+  &__buttons button.ship-status {
+    background: $purple-primary-btn-color;
+    border-color: $purple-primary-btn-color;
+  }
+
+  &__buttons button.ship-status:is(:hover, .active) {
+    background: #fff;
+    color: $purple-primary-btn-color;
+  }
+
+  &__buttons button.confirm-status {
+    background: $green-secondary-btn-color;
+    border-color: $green-secondary-btn-color;
+  }
+
+  &__buttons button.confirm-status:is(:hover, .active) {
+    background: #fff;
+    color: $green-secondary-btn-color;
+  }
+
+  &__buttons button.cancel-status {
+    background: $red-secondary-btn-color;
+    border-color: $red-secondary-btn-color;
+  }
+
+  &__buttons button.cancel-status:is(:hover, .active) {
+    background: #fff;
+    color: $red-secondary-btn-color;
+  }
+
+  //   &__privilege-detail {
+  //     margin-top: 14px;
+  //   }
+
+  //   &__privilege-detail table {
+  //     width: 100%;
+  //     /* table-layout: auto; */
+  //   }
+
+  //   &__privilege-detail table tr {
+  //     height: 30px;
+  //   }
+
+  //   &__privilege-detail table tr:first-of-type {
+  //     border-bottom: 2px solid #000;
+  //   }
+
+  //   &__privilege-detail table :is(th, td) {
+  //     text-align: center;
+  //   }
+
+  //   &__privilege-detail table td:first-of-type {
+  //     text-align: left;
+  //   }
+
+  //   &__privilege-detail table :is(th:not(:first-of-type), td:first-of-type) {
+  //     font-weight: 400;
+  //     font-size: 1.4rem;
+  //   }
+}

@@ -1,0 +1,100 @@
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/colors" as *;
+@use "../../abstracts/mixins" as *;
+
+.client-navbar {
+  &__brand,
+  &__find,
+  &__actions,
+  &__icons {
+    @include flex(stretch, center);
+    gap: 12px;
+  }
+
+  &__brand-image {
+    @include size(50px);
+  }
+
+  &__brand-text {
+    color: $primary-color;
+    font-size: 3.4rem;
+    font-weight: 700;
+  }
+
+  &__find {
+    gap: 0;
+    margin-left: 164px;
+  }
+
+  &__find-input {
+    @include size(400px, 40px);
+    padding: 12px 10px;
+    border: 3px solid #dedede;
+    border-right: none;
+    border-radius: 12px 0 0 12px;
+    transition: 0.2s ease-in-out;
+  }
+
+  &__find-input:where(:hover, :focus, :not(:placeholder-shown)),
+  &__find:has(&__find-button:hover) &__find-input {
+    border-color: $primary-color;
+    box-shadow: 0px 0px 2px 2px rgba(4, 71, 133, 0.1);
+  }
+
+  &__find-button {
+    width: 80px;
+    background: $primary-color;
+    border-radius: 0 12px 12px 0;
+    font-size: 1.6rem;
+  }
+
+  &__find-button:hover {
+    background: $primary-color;
+    color: #fff;
+    box-shadow: 0px 0px 2px 2px rgba(4, 71, 133, 0.1);
+  }
+
+  &__actions,
+  &__icons {
+    margin-left: auto;
+  }
+
+  &__actions span {
+    height: 25px;
+    background: #000;
+    border-radius: 8px;
+  }
+
+  &__action,
+  &__icon {
+    font-size: 2rem;
+    font-weight: 500;
+    transition: 0.2s ease-in-out;
+  }
+
+  &__action:hover {
+    color: $primary-color;
+  }
+
+  &__icons {
+    gap: 0 4px;
+  }
+
+  &__icon {
+    @include size(40px);
+    border-radius: 999px;
+    color: $primary-color;
+    font-size: 2.4rem;
+    line-height: 40px;
+    text-align: center;
+  }
+
+  &__icon i {
+    cursor: pointer;
+    pointer-events: none;
+  }
+
+  &__icon:hover {
+    background: $tetrad-color;
+  }
+}

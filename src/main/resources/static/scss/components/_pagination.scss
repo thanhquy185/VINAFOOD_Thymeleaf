@@ -1,0 +1,34 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/colors" as *;
+@use "../abstracts/mixins" as *;
+
+/* <===== Pagination =====> */
+.pagination {
+  @include flexCenter();
+  gap: 0 14px;
+  // @include size(calc(100% - $admin-space * 3), 30px);
+  @include size(100%, 30px);
+  margin-top: $admin-space;
+
+  &-button {
+    @include size(30px);
+    border-radius: 999px;
+    color: #000;
+    font-size: 1.4rem;
+    line-height: 30px;
+    text-align: center;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+  }
+
+  &-button.active,
+  &-button:not(.previous, .next):hover {
+    background: $primary-color;
+    color: #fff;
+  }
+
+  &-button.previous:hover,
+  &-button.next:hover {
+    color: $primary-color;
+  }
+}

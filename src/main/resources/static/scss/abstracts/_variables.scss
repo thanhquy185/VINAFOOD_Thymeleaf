@@ -1,0 +1,41 @@
+/* <===== Admin Page Variables =====> */
+$admin-header-height: 60px;
+$admin-sidebar-width: 16%;
+$admin-sidebar-hidden-width: 60px;
+$admin-space: 20px;
+$admin-padding-vertical: 8px;
+$admin-padding-horizontal: 10px;
+$admin-border-radius: 8px;
+$admin-dialog-border-radius: 12px;
+$admin-filter-height: 40px;
+$admin-table-data-height: 46px;
+$admin-table-dialog-height: 30px;
+
+/* <===== Client Page Variables =====> */
+
+/* <===== Grid System Variables =====> */
+$grid-columns: 12;
+$grid-gutter-width: 30px;
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px,
+);
+$gutters: (
+  0: 0,
+  1: 0.25,
+  2: 0.5,
+  3: 1,
+  4: 1.5,
+  5: 3,
+);

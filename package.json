@@ -1,0 +1,13 @@
+{
+  "name": "foodshop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "sass src/main/resources/static/scss:src/main/resources/static/assets/css -w",
+    "minify": "sass src/main/resources/static/scss:src/main/resources/static/assets/css -w -s compressed"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

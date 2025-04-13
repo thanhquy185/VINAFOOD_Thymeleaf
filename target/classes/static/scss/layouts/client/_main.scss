@@ -1,0 +1,29 @@
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/colors" as *;
+@use "../../abstracts/mixins" as *;
+
+.client-main {
+  margin-top: calc($grid-gutter-width * 2 + calc($grid-gutter-width / 2));
+
+  & .container > * {
+    margin-top: $grid-gutter-width;
+  }
+
+  & .container > *:nth-of-type(3) {
+    margin-top: 75px;
+  }
+
+  &__header {
+    @include flex(stretch, center);
+    height: 40px;
+  }
+
+  &__title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    // color: $primary-color;
+    font-size: 3.4rem;
+    font-weight: 500;
+  }
+}

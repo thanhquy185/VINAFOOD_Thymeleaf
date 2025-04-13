@@ -1,0 +1,87 @@
+<div class="container" th:fragment="content">
+  <div class="row client-main__header">
+    <a th:href="@{/client/shopping}" class="comeback">
+      <i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Quay lại Giỏ hàng
+    </a>
+    <h2 class="client-handle-order__title client-main__title">
+      Chi tiết đơn hàng
+    </h2>
+  </div>
+  <form
+    method="post"
+    th:action="@{'/client/shopping/handle-order/' + ${order.id}}"
+    th:object="${order}"
+    class="client-handle-order__info"
+  >
+    <div class="client-handle-order__row">
+      <p class="id">
+        <b>Mã đơn hàng: </b><span th:text="'#' + ${order.id}"></span>
+      </p>
+      <p class="price">
+        <b>Tổng thanh toán: </b>
+        <span th:text="${order.totalPrice}"></span>
+      </p>
+    </div>
+    <div class="client-handle-order__row">
+      <p class="time">
+        <b>Thời gian đặt hàng: </b><span th:text="${order.timeCreate}"></span>
+      </p>
+      <p class="status">
+        <b>Trạng thái: </b>
+        <span
+          th:text="${order.status} == 3 ? 'Đã giao hàng' : (${order.status} == 2 ? 'Đã xác nhận' : (${order.status} == 1 ? 'Đã huỷ đơn' : 'Đang chờ xác nhận'))"
+          th:classappend="${order.status} == 3 ? 'purple' : (${order.status} == 2 ? 'green' : (${order.status} == 1 ? 'red' : ''))"
+        ></span>
+      </p>
+    </div>
+    <div class="client-handle-order__row full">
+      <p class="method-pay">
+        <b>Phương thức thanh toán: </b>
+        <span th:text="${order.payMethod}"></span>
+      </p>
+    </div>
+    <div class="client-handle-order__row full">
+      <p class="address-to-ship">
+        <b>Địa chỉ giao hàng: </b>
+        <span th:text="${order.receiverAddress}"></span>
+      </p>
+    </div>
+    <div class="client-handle-order__details">
+      <p class="detail-text"><b>Chi tiết đơn hàng:</b></p>
+      <table class="detail-table">
+        <thead>
+          <tr>
+            <th width="12%">Hình ảnh</th>
+            <th width="40%">Tên món ăn</th>
+            <th width="14%">Giá bán (VNĐ)</th>
+            <th width="14%">Số lượng</th>
+            <th width="20%">Thành tiền (VNĐ)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="orderDetail : ${order.orderDetails}">
+            <td>
+              <img
+                th:src="${orderDetail.food.image} != null ? ('/assets/images/foods/' + ${orderDetail.food.image}) : ('/assets/images/others/no-image.png')"
+                th:alt="'food-' + ${orderDetail.food.id} + '-image'"
+              />
+            </td>
+            <td th:text="${orderDetail.food.name}" class="left"></td>
+            <td th:text="${orderDetail.price}" class="price"></td>
+            <td th:text="${orderDetail.quantity}"></td>
+            <td
+              th:text="${orderDetail.price} * ${orderDetail.quantity}"
+              class="right price"
+            ></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div th:if="${order.status == 0}" class="client-handle-order__buttons">
+      <input type="hidden" name="status" value="1" readonly />
+      <button type="submit" class="client-handle-order__button btn red">
+        <i class="fa-solid fa-circle-xmark"></i>&nbsp;&nbsp;Huỷ đơn hàng
+      </button>
+    </div>
+  </form>
+</div>

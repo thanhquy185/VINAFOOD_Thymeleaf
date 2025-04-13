@@ -1,0 +1,58 @@
+<div th:fragment="content">
+  <a href="/client/product" id="comeback-home-btn">
+    <i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Quay lại Trang chủ
+  </a>
+  <div class="form">
+    <h1 class="form__title">Đăng ký</h1>
+    <div class="form__line"></div>
+    <form
+      method="post"
+      th:action="@{/register}"
+      id="register-form"
+      autocomplete="off"
+    >
+      <div class="form__form-group">
+        <label for="register-username">Tên tài khoản</label>
+        <input
+          name="username"
+          type="text"
+          id="register-username"
+          placeholder="Nhập tên tài khoản"
+        />
+      </div>
+      <div class="form__form-group">
+        <label for="register-password">Mật khẩu</label>
+        <input
+          name="password"
+          type="text"
+          id="register-password"
+          placeholder="Nhập mật khẩu"
+        />
+      </div>
+      <div class="form__form-group">
+        <label for="register-confirm-password">Mật khẩu lần 2</label>
+        <input
+          name="confirmPassword"
+          type="text"
+          id="register-confirm-password"
+          placeholder="Nhập mật khẩu lần 2"
+        />
+      </div>
+      <div class="form__form-group">
+        <button type="submit" class="btn">Xác nhận</button>
+      </div>
+    </form>
+    <p class="form__split">HOẶC</p>
+    <div class="form__social">
+      <a href="#!">
+        <img src="/assets/images/others/facebook.png" />&nbsp;&nbsp;Facebook
+      </a>
+      <a href="#!">
+        <img src="/assets/images/others/google.png" />&nbsp;&nbsp;Google
+      </a>
+    </div>
+    <p class="form__action">
+      Bạn đã có tài khoản ? <a th:href="@{/login}">Đăng nhập</a>
+    </p>
+  </div>
+</div>

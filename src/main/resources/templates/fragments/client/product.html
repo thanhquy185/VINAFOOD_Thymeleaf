@@ -1,0 +1,218 @@
+<div class="container" th:fragment="content">
+  <div class="row client-main__header">
+    <h2 class="client-product__title client-main__title">Danh sách món ăn</h2>
+  </div>
+  <div
+    class="row"
+    th:style="${totalPages != 0} ? 'align-items:flex-start' : 'align-items:stretch'"
+  >
+    <div class="client-product__filter col-3">
+      <div class="client-product__filter-item">
+        <h3 class="client-product__filter-title">Sắp xếp</h3>
+        <div class="client-product__filter-group">
+          <input
+            type="radio"
+            id="name-asc"
+            name="sort"
+            value="Tên món ăn tăng dần"
+          />
+          <label for="name-asc">Tên món ăn tăng dần</label>
+        </div>
+        <div class="client-product__filter-group">
+          <input
+            type="radio"
+            id="name-desc"
+            name="sort"
+            value="Tên món ăn giảm dần"
+          />
+          <label for="name-desc">Tên món ăn giảm dần</label>
+        </div>
+        <div class="client-product__filter-group">
+          <input
+            type="radio"
+            id="price-asc"
+            name="sort"
+            value="Giá bán tăng dần"
+          />
+          <label for="price-asc">Giá bán tăng dần</label>
+        </div>
+        <div class="client-product__filter-group">
+          <input
+            type="radio"
+            id="price-desc"
+            name="sort"
+            value="Giá bán giảm dần"
+          />
+          <label for="price-desc">Giá bán giảm dần</label>
+        </div>
+        <a
+          href="javascript:void(0)"
+          class="client-product__filter-action hidden"
+        >
+        </a>
+      </div>
+      <div class="client-product__filter-item">
+        <h3 class="client-product__filter-title" style="--split-width: 58px">
+          Danh mục
+        </h3>
+        <div
+          th:each="category : ${categories}"
+          class="client-product__filter-group"
+        >
+          <input
+            th:id="${category.id}"
+            th:value="${category.name}"
+            type="checkbox"
+            name="category"
+          />
+          <label th:for="${category.id}" th:text="${category.name}"></label>
+        </div>
+        <a
+          href="javascript:void(0)"
+          class="client-product__filter-action hidden"
+        >
+        </a>
+      </div>
+      <div class="client-product__filter-item">
+        <h3 class="client-product__filter-title" style="--split-width: 46px">
+          Giá bán
+        </h3>
+      </div>
+      <div class="client-product__filter-item">
+        <h3 class="client-product__filter-title" style="--split-width: 56px">
+          Trạng thái
+        </h3>
+        <div class="client-product__filter-group">
+          <input type="radio" id="sold" name="status" value="Còn hàng" />
+          <label for="sold">Còn hàng</label>
+        </div>
+        <div class="client-product__filter-group">
+          <input type="radio" id="stop" name="status" value="Hết hàng" />
+          <label for="stop">Hết hàng</label>
+        </div>
+        <a
+          href="javascript:void(0)"
+          class="client-product__filter-action hidden"
+        >
+        </a>
+      </div>
+      <div class="client-product__filter-buttons">
+        <button
+          id="product-filter-button"
+          class="client-product__filter-button filter btn"
+        >
+          Áp dụng
+        </button>
+        <button
+          id="product-reset-button"
+          class="client-product__filter-button reset btn"
+        >
+          Đặt lại
+        </button>
+      </div>
+    </div>
+    <div th:if="${totalPages != 0}" class="client-product__list col-9">
+      <div th:each="food : ${foods}" class="client-product__item">
+        <div class="client-product__item-media">
+          <img
+            th:src="${food.image} != null ? ('/assets/images/foods/' + ${food.image}) : ('/assets/images/others/no-image.png')"
+            th:alt="'food-' + ${food.id} + '-image'"
+            class="client-product__item-image"
+          />
+        </div>
+        <div class="client-product__item-info">
+          <p
+            th:text="${food.name}"
+            class="client-product__item-name line-clamp"
+            style="--line-clamp: 1"
+          ></p>
+          <p
+            th:text="${food.category.name}"
+            class="client-product__item-category line-clamp"
+            style="--line-clamp: 1"
+          ></p>
+          <p
+            th:text="${food.price}"
+            class="client-product__item-price line-clamp"
+            style="--line-clamp: 1"
+          ></p>
+          <div class="client-product__item-buttons">
+            <a
+              th:href="@{'/client/product/detail/' + ${food.id}}"
+              class="client-product__item-button detail btn"
+              th:style="${food.inventory <= 0 ? 'width: 100%' : ''}"
+            >
+              <i class="fa-solid fa-circle-info"></i>&nbsp;&nbsp;Chi tiết
+            </a>
+            <form
+              th:if="${food.inventory > 0}"
+              method="post"
+              th:action="@{'/client/product/add-to-cart/' + ${food.id}}"
+            >
+              <button
+                type="submit"
+                class="client-product__item-button order btn"
+              >
+                <i class="fa-solid fa-cart-plus"></i>&nbsp;&nbsp;Giỏ hàng
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="client-product__pagination pagination">
+        <!-- Nút Previous -->
+        <a
+          th:if="${currentPage > 1}"
+          th:href="@{'/client/product?page=' + ${currentPage - 1} + ${queryString != null ? queryString : ''}}"
+          class="pagination-button previous"
+        >
+          <i class="icon fa-solid fa-chevron-left"></i>
+        </a>
+        <!-- Trang đầu tiên -->
+        <a
+          th:if="${totalPages > 1}"
+          th:href="@{'/client/product?page=' + ${1} + ${queryString != null ? queryString : ''}}"
+          class="pagination-button"
+          th:classappend="${currentPage == 1 ? 'active' : ''}"
+        >
+          1
+        </a>
+        <!-- Dấu ... nếu currentPage > 4 -->
+        <span th:if="${currentPage > 4}">...</span>
+        <!-- Các trang lân cận currentPage -->
+        <a
+          th:each="i : ${#numbers.sequence(currentPage - 2, currentPage + 2)}"
+          th:if="${i > 1 && i < totalPages}"
+          th:href="@{'/client/product?page=' + ${i} + ${queryString != null ? queryString : ''}}"
+          class="pagination-button"
+          th:classappend="${i == currentPage ? 'active' : ''}"
+          th:text="${i}"
+        >
+        </a>
+        <!-- Dấu ... nếu currentPage < totalPages - 3 -->
+        <span th:if="${currentPage < totalPages - 3}">...</span>
+        <!-- Trang cuối cùng -->
+        <a
+          th:if="${totalPages > 1}"
+          th:href="@{'/client/product?page=' + ${totalPages} + ${queryString != null ? queryString : ''}}"
+          class="pagination-button"
+          th:classappend="${currentPage == totalPages ? 'active' : ''}"
+        >
+          [[${totalPages}]]
+        </a>
+        <!-- Nút Next -->
+        <a
+          th:if="${currentPage < totalPages}"
+          th:href="@{'/client/product?page=' + ${currentPage + 1} + ${queryString != null ? queryString : ''}}"
+          class="pagination-button next"
+        >
+          <i class="icon fa-solid fa-chevron-right"></i>
+        </a>
+      </div>
+    </div>
+    <div th:if="${totalPages == 0}" class="client-product__no-foods col-9">
+      <i class="fa-solid fa-utensils"></i>
+      <!-- <p>KHÔNG TÌM THẤY SẢN PHẨM NÀO !</p> -->
+    </div>
+  </div>
+</div>

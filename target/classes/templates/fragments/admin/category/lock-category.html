@@ -1,0 +1,44 @@
+<div class="main__content" th:fragment="content" th:object="${category}">
+  <div class="main__filter">
+    <a th:href="@{/admin/categories}" class="comeback">
+      <i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Quay lại
+    </a>
+    <h2
+      th:text="${category.status} ? 'Khoá loại món ăn' : 'Mở khoá loại món ăn'"
+      class="title"
+    ></h2>
+  </div>
+  <div class="main__crud category">
+    <form
+      method="post"
+      th:action="@{'/admin/categories/lock/' + *{id}}"
+      id="lock-category-form"
+      class="main-crud__form"
+    >
+      <div class="main-crud__icons">
+        <i
+          th:classappend="${category.status} ? ('fa-unlock') : ('fa-lock')"
+          class="fa-solid"
+        ></i>
+        <i class="fa-solid fa-arrow-right"></i>
+        <i
+          th:classappend="${category.status} ? 'fa-lock' : 'fa-unlock'"
+          class="fa-solid"
+        ></i>
+      </div>
+      <input
+        hidden
+        th:field="*{status}"
+        id="update-category-status"
+        readonly
+      />
+      <p
+        th:text="${category.status} ? ('Bạn có muốn khoá đối tượng có mã ' + ${id} + '?') : ('Bạn có muốn mở khoá đối tượng có mã ' + ${id} + '?')"
+        class="main-crud__question"
+      ></p>
+      <div class="main-crud__buttons">
+        <button type="submit" class="btn lock">Đồng ý</button>
+      </div>
+    </form>
+  </div>
+</div>

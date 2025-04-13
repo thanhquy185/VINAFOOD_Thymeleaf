@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Styles CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css" />
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <sidebar id="admin-sidebar" class="sidebar col-2">
+      <!-- Brand -->
+      <a href="#" class="sidebar__brand">
+        <img
+          src="/assets/images/others/brand-image.png"
+          alt="brand-image"
+          class="sidebar__brand-image"
+        />
+        <strong class="sidebar__brand-name">VINA FOOD</strong>
+      </a>
+      <!-- Menu -->
+      <ul class="sidebar__menu">
+        <!-- <li class="sidebar__item">
+          <a href="/admin/dashboard-shop" class="sidebar__action">
+            <i class="sidebar__action-icon fa-solid fa-chart-pie"></i>
+            <span class="sidebar__action-text">Thống kê cửa hàng</span>
+          </a>
+        </li> -->
+        <li class="sidebar__item">
+          <a
+            href="/admin/dashboard-order"
+            class="sidebar__action"
+            data-main-content="order_dashboard"
+          >
+            <i class="sidebar__action-icon fa-solid fa-hand-holding-dollar"></i>
+            <span class="sidebar__action-text">Thống kê đơn hàng</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a
+            href="/admin/orders"
+            class="sidebar__action"
+            data-main-content="order"
+          >
+            <i class="sidebar__action-icon fa-solid fa-receipt"></i>
+            <span class="sidebar__action-text">Đơn hàng</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a href="/admin/users" class="sidebar__action">
+            <i class="sidebar__action-icon fa-solid fa-user"></i>
+            <span class="sidebar__action-text">Người dùng</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a
+            href="/admin/categories"
+            class="sidebar__action"
+            data-main-content="category"
+          >
+            <i class="sidebar__action-icon fa-solid fa-bell-concierge"></i>
+            <span class="sidebar__action-text">Loại món ăn</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a
+            href="/admin/foods"
+            class="sidebar__action"
+            data-main-content="food"
+          >
+            <i class="sidebar__action-icon fa-solid fa-utensils"></i>
+            <span class="sidebar__action-text">Món ăn</span>
+          </a>
+        </li>
+      </ul>
+    </sidebar>
+
+    <!-- Navbar -->
+    <nav class="nav col-10">
+      <div class="nav__left">
+        <a id="show-admin-sidebar" class="nav__action">
+          <i class="nav__action-icon fa-solid fa-bars"></i>
+        </a>
+        <b id="title-page" class="nav__title"></b>
+      </div>
+      <div class="nav__right">
+        <a href="#!" class="nav__action">
+          <img
+            src="/assets/images/others/vietnam.png"
+            alt="vietnam"
+            class="nav__action-image"
+          />
+        </a>
+        <a class="nav__action">
+          <i class="nav__action-icon fa-regular fa-lightbulb"></i>
+        </a>
+        <button class="nav__action profile-block">
+          <img
+            th:src="${userLogin.image} != null ? ('/assets/images/users/' + ${userLogin.image}) : ('/assets/images/others/no-image.png')"
+            th:alt="'user-' + ${userLogin.id} + '-image'"
+            class="nav__avatar"
+            id="avatar"
+          />
+          <div class="nav__dropdown" id="dropdown" th:object="${userLogin}">
+            <div class="nav__dropdown-header">
+              <img
+                th:src="${userLogin.image} != null ? ('/assets/images/users/' + ${userLogin.image}) : ('/assets/images/others/no-image.png')"
+                th:alt="'user-' + ${userLogin.id} + '-image'"
+                class="nav__dropdown-header-avatar"
+              />
+              <div class="nav__dropdown-header-info">
+                <strong
+                  th:text="${userLogin.fullname}"
+                  class="nav__dropdown-header-name"
+                ></strong>
+                <span
+                  th:text="${userLogin.role.name}"
+                  class="nav__dropdown-header-work"
+                ></span>
+              </div>
+            </div>
+            <ul class="nav__dropdown-list">
+              <li class="nav__dropdown-item">
+                <a href="#"><i class="fa fa-bell"></i>&nbsp;Thông báo</a>
+              </li>
+              <li class="nav__dropdown-item">
+                <a th:href="@{/client/product}">
+                  <i class="fa fa-exchange-alt"></i>&nbsp;Đến trang mua hàng
+                </a>
+              </li>
+              <li class="nav__dropdown-item">
+                <a href="#">
+                  <i class="fa fa-question-circle"></i>&nbsp;Trung tâm trợ giúp
+                </a>
+              </li>
+              <li class="nav__dropdown-item">
+                <a href="/logout">
+                  <i class="fa fa-sign-out-alt"></i>&nbsp;Đăng xuất
+                </a>
+              </li>
+            </ul>
+          </div>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main -->
+    <main class="main">
+      <!-- Content -->
+      <div
+        id="main-content"
+        th:replace="@{'fragments/admin/' + ${page}} :: content"
+      ></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p class="footer__info">Được xây dựng bởi <b>Trần Thanh Quy</b></p>
+      &nbsp;
+      <img
+        src="/assets/images/others/coding.png"
+        alt="footer-icon"
+        class="footer__image"
+      />
+    </footer>
+
+    <!-- Javascript -->
+    <!-- <script type="module" src="admin/js/changeMainContent.js"></script> -->
+    <script type="module" th:src="@{/js/admin/reloadPage.js}"></script>
+    <script type="module" th:src="@{/js/admin/showSideBar.js}"></script>
+    <script type="module" th:src="@{/js/admin/showProfile.js}"></script>
+    <!-- <script type="module" src="/js/admin/paginationEvents.js"></script> -->
+  </body>
+</html>

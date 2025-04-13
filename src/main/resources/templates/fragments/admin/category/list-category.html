@@ -1,0 +1,172 @@
+<div class="main__content" th:fragment="content">
+  <div class="main__filter">
+    <div class="main__form-group form-group filter">
+      <label for="find" class="main__form-group-icon">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </label>
+      <input
+        type="text"
+        id="find-input"
+        class="main__form-group-input"
+        placeholder="Tìm kiếm thông tin"
+      />
+    </div>
+    <div class="main__form-group form-group filter select">
+      <label for="sort" class="main__form-group-icon">
+        <i class="fa-solid fa-sort"></i>
+      </label>
+      <input
+        type="text"
+        id="sort-select"
+        class="main__form-group-select"
+        placeholder="Sắp xếp thông tin"
+        readonly
+      />
+      <ul class="main__form-group-list">
+        <li class="main__form-group-item selected">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Sắp xếp
+          thông tin
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;ID tăng dần
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;ID giảm dần
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Tên loại
+          tăng dần
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Tên loại
+          giảm dần
+        </li>
+      </ul>
+    </div>
+    <div class="main__form-group form-group filter select">
+      <label for="status-select" class="main__form-group-icon">
+        <i class="fa-solid fa-signal"></i>
+      </label>
+      <input
+        type="text"
+        id="status-select"
+        class="main__form-group-select"
+        placeholder="Chọn Trạng thái"
+        readonly
+      />
+      <ul class="main__form-group-list">
+        <li class="main__form-group-item selected">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Chọn Trạng
+          thái
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Hoạt động
+        </li>
+        <li class="main__form-group-item">
+          <span><i class="fa-solid fa-check"></i></span>&nbsp;&nbsp;Tạm dừng
+        </li>
+      </ul>
+    </div>
+    <div class="main__form-group">
+      <button id="filter-button-category" class="btn filter">
+        <i class="fa-solid fa-filter"></i>&nbsp;Lọc
+      </button>
+    </div>
+    <div class="main__form-group buttons">
+      <a
+        th:href="@{/admin/categories/create}"
+        id="add-button-category"
+        class="btn add"
+        style="margin-left: auto"
+      >
+        <i class="fa-solid fa-plus"></i>&nbsp;Thêm
+      </a>
+    </div>
+  </div>
+  <div class="main__data">
+    <table class="main__table table data">
+      <thead>
+        <tr>
+          <th width="20%">ID</th>
+          <th width="40%">Tên loại</th>
+          <th width="20%">Trạng thái</th>
+          <th width="20%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="category : ${categories}">
+          <td th:text="${category.id}"></td>
+          <td th:text="${category.name}"></td>
+          <td
+            th:text="${category.status ? 'Hoạt động' : 'Tạm dừng'}"
+            th:classappend="${category.status ? 'green' : 'red'}"
+          ></td>
+          <td>
+            <a
+              th:href="@{'/admin/categories/update/' + ${category.id}}"
+              class="update-button-category"
+            >
+              <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+            <a th:href="@{'/admin/categories/lock/' + ${category.id}}">
+              <i
+                class="fa-solid lock-button-category"
+                th:classappend="${category.status ? 'fa-lock' : 'fa-unlock'}"
+              ></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="main__pagination pagination">
+      <!-- Nút Previous -->
+      <a
+        th:if="${currentPage > 1}"
+        th:href="@{'/admin/categories?page=' + ${currentPage - 1} + ${queryString != null ? queryString : ''}}"
+        class="pagination-button previous"
+      >
+        <i class="icon fa-solid fa-chevron-left"></i>
+      </a>
+      <!-- Trang đầu tiên -->
+      <a
+        th:if="${totalPages > 1}"
+        th:href="@{'/admin/categories?page=' + ${1} + ${queryString != null ? queryString : ''}}"
+        class="pagination-button"
+        th:classappend="${currentPage == 1 ? 'active' : ''}"
+      >
+        1
+      </a>
+      <!-- Dấu ... nếu currentPage > 4 -->
+      <span th:if="${currentPage > 4}">...</span>
+      <!-- Các trang lân cận currentPage -->
+      <a
+        th:each="i : ${#numbers.sequence(currentPage - 2, currentPage + 2)}"
+        th:if="${i > 1 && i < totalPages}"
+        th:href="@{'/admin/categories?page=' + ${i} + ${queryString != null ? queryString : ''}}"
+        class="pagination-button"
+        th:classappend="${i == currentPage ? 'active' : ''}"
+        th:text="${i}"
+      >
+      </a>
+      <!-- Dấu ... nếu currentPage < totalPages - 3 -->
+      <span th:if="${currentPage < totalPages - 3}">...</span>
+      <!-- Trang cuối cùng -->
+      <a
+        th:if="${totalPages > 1}"
+        th:href="@{'/admin/categories?page=' + ${totalPages} + ${queryString != null ? queryString : ''}}"
+        class="pagination-button"
+        th:classappend="${currentPage == totalPages ? 'active' : ''}"
+      >
+        [[${totalPages}]]
+      </a>
+      <!-- Nút Next -->
+      <a
+        th:if="${currentPage < totalPages}"
+        th:href="@{'/admin/categories?page=' + ${currentPage + 1} + ${queryString != null ? queryString : ''}}"
+        class="pagination-button next"
+      >
+        <i class="icon fa-solid fa-chevron-right"></i>
+      </a>
+    </div>
+  </div>
+</div>

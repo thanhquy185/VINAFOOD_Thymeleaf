@@ -1,0 +1,110 @@
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/colors" as *;
+@use "../../abstracts/mixins" as *;
+
+.client-handle-order {
+  &__info {
+    width: 100%;
+    background: $secondary-color;
+    border-radius: 12px;
+    margin: 0 auto;
+    padding: 24px 26px;
+  }
+
+  &__info p {
+    font-size: 2rem;
+  }
+
+  &__info p b {
+    font-weight: 600;
+  }
+
+  &__info p.status span {
+    background: $ternary-color;
+    padding: 6px 10px;
+    border-radius: 4px;
+    color: #fff;
+  }
+
+  &__info p.status span.purple {
+    background: $purple-primary-btn-color;
+  }
+
+  &__info p.status span.green {
+    background: $green-secondary-btn-color;
+  }
+
+  &__info p.status span.red {
+    background: $red-secondary-btn-color;
+  }
+
+  &__row {
+    display: flex;
+  }
+
+  &__row > * {
+    width: 50%;
+  }
+
+  &__row.full > * {
+    width: 100%;
+  }
+
+  &__row + &__row,
+  &__details {
+    margin-top: 10px;
+  }
+
+  &__details table {
+    table-layout: fixed;
+    width: 100%;
+    margin-top: 4px;
+  }
+
+  &__details table th {
+    background: #000;
+    border-bottom: none;
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  &__details table th,
+  &__details table td {
+    height: $admin-table-dialog-height;
+    padding: 4px 6px;
+    border: 1px solid #000;
+    font-size: 1.6rem;
+    line-height: $admin-table-dialog-height;
+    text-align: center;
+  }
+
+  &__details table td {
+    height: 100px;
+    line-height: 100px;
+  }
+
+  &__details table td:has(img) {
+    padding: 0 4px;
+  }
+
+  &__details table td img {
+    @include size(100%);
+  }
+
+  &__details table td.left {
+    text-align: left;
+  }
+
+  &__details table td.right {
+    text-align: right;
+  }
+
+  &__buttons {
+    @include flex(center, center);
+    margin-top: 46px;
+  }
+
+  &__buttons > * {
+    width: 24%;
+  }
+}
