@@ -4,23 +4,11 @@
 
 ## 📌 Giới thiệu
 
-Đồ án cá nhân dùng để học và hiểu về từng bước xây dựng và phát triển một website có sử dụng Java Spring và được xây dựng theo mô hình MVC. Vì là đồ án dùng để học Java Spring nên còn nhiều hạn chế.
+Đồ án cá nhân dùng để học và hiểu về từng bước xây dựng và phát triển một website có sử dụng Java Spring và được xây dựng theo mô hình MVC. Vì là đồ án dùng để học Java Spring nên còn nhiều hạn chế (còn phát triển thêm).
 
 <p><br></p>
 
 ## 🖼️ Giao diện
-
-<!-- <p align="center">
-  <img src="src/main/resources/static/assets/images/readme/login.png" alt="Giao diện đăng nhập" width="100%" />
-  <br>
-  <em>Hình 1: Giao diện đăng nhập</em>
-</p>
-
-<p align="center">
-  <img src="src/main/resources/static/assets/images/readme/register.png" alt="Giao diện đăng ký" width="100%"/>
-  <br>
-  <em>Hình 2: Giao diện đăng ký</em>
-</p> -->
 
 <table>
   <tr>
@@ -61,12 +49,12 @@
   </tr>
   <tr>
     <td width="50%" align="center">
-      <img src="src/main/resources/static/assets/images/readme/client-payment.png" alt="Giao diện thanh toán" width="100%"/>
+      <img src="src/main/resources/static/assets/images/readme/client-payment-1.png" alt="Giao diện thanh toán" width="100%"/>
       <br>
       <em>Hình 7: Giao diện thanh toán</em>
     </td>
     <td width="50%" align="center">
-      <img src="src/main/resources/static/assets/images/readme/client-payment-change-address.png" alt="Giao diện thanh toán (thay đổi địa chỉ giao hàng)" width="100%"/>
+      <img src="src/main/resources/static/assets/images/readme/client-payment-2.png" alt="Giao diện thanh toán (thay đổi địa chỉ giao hàng)" width="100%"/>
       <br>
       <em>Hình 8: Giao diện thanh toán (thay đổi địa chỉ giao hàng)</em>
     </td>
@@ -81,6 +69,66 @@
       <img src="src/main/resources/static/assets/images/readme/403.png" alt="Giao diện trang 403" width="100%"/>
       <br>
       <em>Hình 10: Giao diện trang 403</em>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/admin-orders-1.png" alt="Giao diện quản lý đơn hàng (1)" width="100%"/>
+      <br>
+      <em>Hình 11: Giao diện quản lý đơn hàng (1)</em>
+    </td>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/admin-orders-2.png" alt="Giao diện quản lý đơn hàng (2)" width="100%"/>
+      <br>
+      <em>Hình 12: Giao diện quản lý đơn hàng (2)</em>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/admin-update-order.png" alt="Giao diện cập nhật đơn hàng" width="100%"/>
+      <br>
+      <em>Hình 13: Giao diện cập nhật đơn hàng</em>
+    </td>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/admin-print-order.png" alt="Giao diện in đơn hàng" width="100%"/>
+      <br>
+      <em>Hình 14: Giao diện in đơn hàng</em>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/admin-users.png" alt="Giao diện quản lý người dùng" width="100%"/>
+      <br>
+      <em>Hình 15: Giao diện quản lý người dùng</em>
+    </td>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/admin-update-user.png" alt="Giao diện cập nhật người dùng" width="100%"/>
+      <br>
+      <em>Hình 16: Giao diện cập nhật người dùng</em>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/admin-categories.png" alt="Giao diện quản lý loại món ăn" width="100%"/>
+      <br>
+      <em>Hình 17: Giao diện quản lý loại món ăn</em>
+    </td>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/admin-lock-category.png" alt="Giao diện khoá / mở khoá loại món ăn" width="100%"/>
+      <br>
+      <em>Hình 18: Giao diện khoá / mở khoá loại món ăn</em>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/admin-foods.png" alt="Giao diện quản lý món ăn" width="100%"/>
+      <br>
+      <em>Hình 19: Giao diện quản lý món ăn</em>
+    </td>
+    <td width="50%" align="center">
+      <img src="src/main/resources/static/assets/images/readme/admin-add-food.png" alt="Giao diện thêm món ăn" width="100%"/>
+      <br>
+      <em>Hình 20: Giao diện thêm món ăn</em>
     </td>
   </tr>
 </table>
