@@ -4,7 +4,7 @@
 
 ## 📌 Giới thiệu
 
-Đồ án cá nhân dùng để học và hiểu về từng bước xây dựng và phát triển một website có sử dụng Java Spring và được xây dựng theo mô hình MVC. Vì là đồ án dùng để học Java Spring nên còn nhiều hạn chế (còn phát triển thêm).
+Đồ án cá nhân dùng để học và hiểu về từng bước xây dựng và phát triển một website có sử dụng Java Spring và được xây dựng theo mô hình MVC. Vì là đồ án dùng để học Java Spring nên còn nhiều hạn chế.
 
 <p><br></p>
 
